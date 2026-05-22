@@ -1,0 +1,13 @@
+<form th:action="@{/turmas/salvar}" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
+    <input type="text" name="nome" placeholder="Nome da Turma (Ex: 3º Ano A)" required>
+    <input type="number" name="anoLetivo" placeholder="Ano Letivo (Ex: 2026)" required>
+
+    <label>Selecione o Professor:</label>
+    <select name="professor" required>
+        <option th:each="prof : ${professores}"
+                th:value="${prof.id}"
+                th:text="${prof.nome}"></option>
+    </select>
+
+    <button type="submit">Criar Turma</button>
+</form>

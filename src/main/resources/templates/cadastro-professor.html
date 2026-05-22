@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Professor</title>
+    <style>
+        body { font-family: sans-serif; margin: 50px; }
+        form { display: flex; flex-direction: column; width: 300px; gap: 10px; }
+        input { padding: 8px; }
+        button { padding: 10px; background: #28a745; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+<h2>Novo Professor</h2>
+<form th:action="@{/professores/salvar}" method="post">
+    <input type="text" name="nome" placeholder="Nome Completo" required>
+    <input type="email" name="email" placeholder="E-mail" required>
+    <input type="password" name="senha" placeholder="Senha" required>
+    <button type="submit">Cadastrar Professor</button>
+</form>
+<br>
+<a href="/professores">Ver todos os cadastrados</a>
+</body>
+</html>

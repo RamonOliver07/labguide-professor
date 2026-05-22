@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Professores</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        .btn-novo { display: inline-block; margin-bottom: 20px; padding: 10px 15px; background: #28a745; color: white; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+<h2>Professores Cadastrados</h2>
+<a href="/professores/novo" class="btn-novo">+ Cadastrar Novo Professor</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${lista}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.nome}"></td>
+        <td th:text="${p.email}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
