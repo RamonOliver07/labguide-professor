@@ -3,7 +3,7 @@
     <input type="number" name="anoLetivo" placeholder="Ano Letivo (Ex: 2026)" required>
 
     <label>Selecione o Professor:</label>
-    <select name="professor" required>
+    <select name="professorId" required>
         <option th:each="prof : ${professores}"
                 th:value="${prof.id}"
                 th:text="${prof.nome}"></option>

@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface RoteiroRepository extends JpaRepository<Roteiro, Long> {
-    // Busca todos os roteiros de um professor específico
     List<Roteiro> findByProfessor(Professor professor);
 }

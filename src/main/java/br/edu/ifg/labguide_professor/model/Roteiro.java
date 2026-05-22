@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -18,22 +17,34 @@ public class Roteiro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Mantemos o titulo
     @Column(nullable = false)
     private String titulo;
 
+    // Adicionamos o nome de volta para satisfazer a constraint antiga do banco
+    @Column(nullable = false)
+    private String nome;
+
     @Column(columnDefinition = "TEXT")
-    private String objetivo;
+    private String descricao;
 
-    @Column(name = "data_criacao")
-    private LocalDateTime dataCriacao = LocalDateTime.now();
-
-    // Relacionamento: Muitos roteiros pertencem a um Professor
     @ManyToOne
-    @JoinColumn(name = "professor_id", nullable = false)
+    @JoinColumn(name = "turma_id", nullable = false)
+    private Turma turma;
+
+    @ManyToOne
+    @JoinColumn(name = "professor_id")
     private Professor professor;
 
-    // Relacionamento: Um roteiro tem vários passos
-    // cascade = ALL significa que se você apagar o roteiro, os passos somem junto
-    @OneToMany(mappedBy = "roteiro", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "roteiro", cascade = CascadeType.ALL)
     private List<Passo> passos;
+
+    // Construtor personalizado ajustado para duplicar o valor nas duas colunas
+    public Roteiro(String titulo, String descricao, Turma turma, Professor professor) {
+        this.titulo = titulo;
+        this.nome = titulo; // O nome recebe o mesmo texto do titulo
+        this.descricao = descricao;
+        this.turma = turma;
+        this.professor = professor;
+    }
 }
