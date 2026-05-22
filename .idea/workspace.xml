@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ec27e91a-4925-4867-9861-f7e13d1b488b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/AlunoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/ProfessorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/TurmaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-aluno.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-professor.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-turma.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-alunos.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-professores.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/LabguideProfessorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/LabguideProfessorApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="AnnotationType" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/labguide-professor" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="proportion" value="0.2047546" />
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="3BquMTOKdCU3OJfNhyFunjZ8Lk4" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.LabguideProfessorApplication.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.All in labguide-professor.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Dell/Downloads/labguide-professor",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "File.Encoding",
+    "to.speed.mode.migration.done": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="br.edu.ifg.labguide_professor" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.LabguideProfessorApplication">
+    <configuration name="LabguideProfessorApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.edu.ifg.labguide_professor.LabguideProfessorApplication" />
+      <module name="labguide-professor" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.edu.ifg.labguide_professor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in labguide-professor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="labguide-professor" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.LabguideProfessorApplication" />
+        <item itemvalue="JUnit.All in labguide-professor" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ec27e91a-4925-4867-9861-f7e13d1b488b" name="Changes" comment="" />
+      <created>1775228873660</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1775228873660</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/labguide-professor" />
+    </ignored-roots>
+  </component>
+</project>
