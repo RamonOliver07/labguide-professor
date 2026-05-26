@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec27e91a-4925-4867-9861-f7e13d1b488b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/AlunoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/ProfessorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/TurmaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-aluno.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-professor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-turma.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-alunos.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-professores.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/LabguideProfessorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/LabguideProfessorApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/model/Passo.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/model/Passo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +24,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/labguide-professor" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
     <option name="proportion" value="0.2047546" />
@@ -60,7 +50,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "master",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Dell/Downloads/labguide-professor",
