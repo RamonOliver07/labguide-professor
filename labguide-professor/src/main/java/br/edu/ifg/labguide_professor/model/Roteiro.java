@@ -17,16 +17,18 @@ public class Roteiro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Mantemos o titulo
     @Column(nullable = false)
     private String titulo;
 
-    // Adicionamos o nome de volta para satisfazer a constraint antiga do banco
     @Column(nullable = false)
     private String nome;
 
     @Column(columnDefinition = "TEXT")
     private String descricao;
+
+    // NOVO CAMPO: Controla se o roteiro está visível para os alunos
+    @Column(name = "status", length = 50, nullable = false)
+    private String status = "RASCUNHO"; // Valor inicial padrão
 
     @ManyToOne
     @JoinColumn(name = "turma_id", nullable = false)
@@ -36,16 +38,17 @@ public class Roteiro {
     @JoinColumn(name = "professor_id")
     private Professor professor;
 
-    // Procure por essa linha na classe Roteiro.java:
     @OneToMany(mappedBy = "roteiro", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Passo> passos;
 
-    // Construtor personalizado ajustado para duplicar o valor nas duas colunas
     public Roteiro(String titulo, String descricao, Turma turma, Professor professor) {
         this.titulo = titulo;
-        this.nome = titulo; // O nome recebe o mesmo texto do titulo
+        this.nome = titulo;
         this.descricao = descricao;
         this.turma = turma;
         this.professor = professor;
+        this.status = "RASCUNHO"; // Garante o padrão no construtor
     }
+
+
 }

@@ -44,6 +44,7 @@ public class RoteiroController {
         // Força o preenchimento dos dois campos com o que veio da tela
         roteiro.setTitulo(titulo);
         roteiro.setNome(titulo);
+        roteiro.setStatus("RASCUNHO");
 
         // Vincula a turma selecionada na tela ao roteiro
         turmaRepository.findById(turmaId).ifPresent(roteiro::setTurma);
@@ -55,6 +56,7 @@ public class RoteiroController {
         roteiroRepository.save(roteiro);
 
         return "redirect:/roteiros/novo?sucesso";
+
     }
 
     // Tela que lista todos os roteiros cadastrados
@@ -138,5 +140,17 @@ public class RoteiroController {
         });
 
         return "redirect:/roteiros/visualizar/" + roteiroId;
+    }
+
+    // Rota para ALTERAR O STATUS do roteiro para PUBLICADO
+    @PostMapping("/visualizar/{id}/publicar")
+    public String publicarRoteiro(@PathVariable("id") Long id) {
+
+        roteiroRepository.findById(id).ifPresent(roteiro -> {
+            roteiro.setStatus("PUBLICADO"); // <--- ALTERA O STATUS NO BANCO
+            roteiroRepository.save(roteiro);
+        });
+
+        return "redirect:/roteiros/visualizar/" + id;
     }
 }

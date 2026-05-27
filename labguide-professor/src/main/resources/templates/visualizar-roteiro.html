@@ -36,9 +36,23 @@
             <div class="card shadow-sm border-0 rounded-3 mb-4">
                 <div class="card-body p-5">
 
-                    <div class="pb-3 mb-4 border-bottom">
-                        <span class="badge btn-custom px-3 py-2 rounded-pill mb-2" th:text="${roteiro.turma.nome}">Turma</span>
-                        <h2 class="fw-bold text-dark" th:text="${roteiro.titulo}">Nome do Roteiro</h2>
+                    <div class="pb-3 mb-4 border-bottom d-flex justify-content-between align-items-start">
+                        <div>
+                            <span class="badge btn-custom px-3 py-2 rounded-pill mb-2" th:text="${roteiro.turma.nome}">Turma</span>
+
+                            <span th:if="${roteiro.status == 'RASCUNHO'}" class="badge bg-warning text-dark px-3 py-2 rounded-pill mb-2 ms-1 fw-bold">Em Rascunho</span>
+                            <span th:if="${roteiro.status == 'PUBLICADO'}" class="badge bg-success text-white px-3 py-2 rounded-pill mb-2 ms-1 fw-bold">🚀 Publicado para Alunos</span>
+
+                            <h2 class="fw-bold text-dark" th:text="${roteiro.titulo}">Nome do Roteiro</h2>
+                        </div>
+
+                        <div th:if="${roteiro.status == 'RASCUNHO'}">
+                            <form th:action="@{/roteiros/visualizar/{id}/publicar(id=${roteiro.id})}" method="POST" onsubmit="return confirm('Deseja publicar este roteiro? Após a publicação, os alunos poderão responder o experimento.');">
+                                <button type="submit" class="btn btn-success fw-bold px-4 py-2 shadow-sm">
+                                    🚀 Publicar Roteiro
+                                </button>
+                            </form>
+                        </div>
                     </div>
 
                     <h5 class="fw-bold text-secondary mb-3">Contextualização do Experimento</h5>
