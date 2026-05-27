@@ -100,4 +100,46 @@ public class RoteiroController {
         // Redireciona de volta para a tela de visualização do mesmo roteiro
         return "redirect:/roteiros/visualizar/" + id;
     }
+
+    // Rota para EXCLUIR um passo específico e atualizar a memória do Java
+    @PostMapping("/visualizar/{roteiroId}/excluir-passo/{passoId}")
+    public String excluirPasso(@PathVariable("roteiroId") Long roteiroId,
+                               @PathVariable("passoId") Long passoId) {
+
+        // 1. Busca o roteiro para forçar a sincronização da memória
+        roteiroRepository.findById(roteiroId).ifPresent(roteiro -> {
+            // Remove o passo deletado da lista interna do Java
+            roteiro.getPassos().removeIf(passo -> passo.getId().equals(passoId));
+
+            // 2. REGRA DE NEGÓCIO (Opcional, mas excelente): Reordena os passos restantes (1, 2, 3...)
+            for (int i = 0; i < roteiro.getPassos().size(); i++) {
+                roteiro.getPassos().get(i).setNumero(i + 1);
+            }
+
+            // Salva as mudanças da ordenação
+            roteiroRepository.save(roteiro);
+        });
+
+        // 3. Deleta fisicamente o registro da tabela tb_passo
+        passoRepository.deleteById(passoId);
+
+        // Redireciona limpando o cache e forçando uma nova busca limpa no banco
+        return "redirect:/roteiros/visualizar/" + roteiroId;
+    }
+
+    // Rota para EDITAR um passo existente
+    @PostMapping("/visualizar/{roteiroId}/editar-passo/{passoId}")
+    public String editarPasso(@PathVariable("roteiroId") Long roteiroId,
+                              @PathVariable("passoId") Long passoId,
+                              @RequestParam("descricao") String descricao,
+                              @RequestParam("numero") Integer numero) {
+
+        passoRepository.findById(passoId).ifPresent(passo -> {
+            passo.setDescricao(descricao);
+            passo.setNumero(numero);
+            passoRepository.save(passo);
+        });
+
+        return "redirect:/roteiros/visualizar/" + roteiroId;
+    }
 }
