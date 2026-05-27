@@ -18,6 +18,10 @@ public class Passo {
     @Column(name = "instrucao", columnDefinition = "TEXT", nullable = false)
     private String descricao;
 
+    // NOVA COLUNA: Mapeia o tipo de resposta esperado do aluno
+    @Column(name = "tipo_entrada", length = 50, nullable = false)
+    private String tipoEntrada = "TEXTO"; // Valor padrão inicial para evitar erros
+
     @ManyToOne
     @JoinColumn(name = "roteiro_id", nullable = false)
     private Roteiro roteiro;
@@ -31,6 +35,9 @@ public class Passo {
 
     public String getDescricao() { return descricao; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
+
+    public String getTipoEntrada() { return tipoEntrada; }
+    public void setTipoEntrada(String tipoEntrada) { this.tipoEntrada = tipoEntrada; }
 
     public Roteiro getRoteiro() { return roteiro; }
     public void setRoteiro(Roteiro roteiro) { this.roteiro = roteiro; }

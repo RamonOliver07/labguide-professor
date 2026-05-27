@@ -72,6 +72,10 @@
                                          style="width: 35px; height: 35px; font-size: 1.1rem; font-weight: bold;"
                                          th:text="${p.numero}">1</div>
                                     <div class="flex-grow-1">
+                                        <span th:if="${p.tipoEntrada == 'TEXTO'}" class="badge bg-secondary text-white mb-1 small fw-semibold">Resposta em Texto</span>
+                                        <span th:if="${p.tipoEntrada == 'NUMERO'}" class="badge bg-primary text-white mb-1 small fw-semibold">Medição Numérica</span>
+                                        <span th:if="${p.tipoEntrada == 'FOTO'}" class="badge bg-info text-dark mb-1 small fw-semibold">Upload de Foto</span>
+
                                         <p class="text-dark m-0 lh-base fs-5" style="white-space: pre-line;" th:text="${p.descricao}">Descrição do passo físico ou químico.</p>
                                     </div>
                                 </div>
@@ -101,7 +105,15 @@
                                                             <label class="form-label small fw-semibold text-muted">Ordem/Nº</label>
                                                             <input type="number" class="form-control text-dark fw-bold text-center" name="numero" th:value="${p.numero}" required>
                                                         </div>
-                                                        <div class="col-sm-9">
+                                                        <div class="col-sm-4">
+                                                            <label class="form-label small fw-semibold text-muted">Retorno do Aluno</label>
+                                                            <select class="form-select text-dark fw-semibold" name="tipoEntrada" required>
+                                                                <option value="TEXTO" th:selected="${p.tipoEntrada == 'TEXTO'}">Texto / Observação</option>
+                                                                <option value="NUMERO" th:selected="${p.tipoEntrada == 'NUMERO'}">Número (pH, Peso, etc)</option>
+                                                                <option value="FOTO" th:selected="${p.tipoEntrada == 'FOTO'}">Foto do Experimento</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-sm-12">
                                                             <label class="form-label small fw-semibold text-muted">Instrução Atualizada</label>
                                                             <textarea class="form-control text-dark" name="descricao" rows="3" th:text="${p.descricao}" required></textarea>
                                                         </div>
@@ -126,10 +138,18 @@
                                     <input type="number" class="form-control text-dark fw-bold text-center" id="numero" name="numero"
                                            th:value="${#lists.size(roteiro.passos) + 1}" required>
                                 </div>
-                                <div class="col-sm-9 col-md-10">
+                                <div class="col-sm-5 col-md-4">
+                                    <label for="tipoEntrada" class="form-label small fw-semibold text-muted">O que o aluno deve enviar?</label>
+                                    <select class="form-select text-dark fw-semibold" id="tipoEntrada" name="tipoEntrada" required>
+                                        <option value="TEXTO" selected>Texto / Observação Descritiva</option>
+                                        <option value="NUMERO">Número (Massa, Volume, pH...)</option>
+                                        <option value="FOTO">Foto comprobatória da etapa</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-12">
                                     <label for="descricao" class="form-label small fw-semibold text-muted">Instrução / O que fazer?</label>
                                     <textarea class="form-control text-dark" id="descricao" name="descricao" rows="2"
-                                              placeholder="Ex: Adicione 20g de Hidróxido de Sódio na solução e misture devagar..." required></textarea>
+                                              placeholder="Ex: Pese 5g de Cloreto de Sódio e anote o valor exato obtido..." required></textarea>
                                 </div>
                             </div>
                             <div class="text-end mt-3">

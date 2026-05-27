@@ -86,18 +86,19 @@ public class RoteiroController {
     @PostMapping("/visualizar/{id}/adicionar-passo")
     public String adicionarPasso(@PathVariable("id") Long id,
                                  @RequestParam("descricao") String descricao,
-                                 @RequestParam("numero") Integer numero) {
+                                 @RequestParam("numero") Integer numero,
+                                 @RequestParam("tipoEntrada") String tipoEntrada) { // <--- CAPTURA O TIPO DE ENTRADA DO FORMULÁRIO
 
         roteiroRepository.findById(id).ifPresent(roteiro -> {
             Passo novoPasso = new Passo();
             novoPasso.setDescricao(descricao);
             novoPasso.setNumero(numero);
-            novoPasso.setRoteiro(roteiro); // Faz o vínculo da chave estrangeira (roteiro_id)
+            novoPasso.setTipoEntrada(tipoEntrada); // <--- SALVA O TIPO NO OBJETO PASSO
+            novoPasso.setRoteiro(roteiro);
 
-            passoRepository.save(novoPasso); // Salva no banco
+            passoRepository.save(novoPasso);
         });
 
-        // Redireciona de volta para a tela de visualização do mesmo roteiro
         return "redirect:/roteiros/visualizar/" + id;
     }
 
@@ -106,24 +107,18 @@ public class RoteiroController {
     public String excluirPasso(@PathVariable("roteiroId") Long roteiroId,
                                @PathVariable("passoId") Long passoId) {
 
-        // 1. Busca o roteiro para forçar a sincronização da memória
         roteiroRepository.findById(roteiroId).ifPresent(roteiro -> {
-            // Remove o passo deletado da lista interna do Java
             roteiro.getPassos().removeIf(passo -> passo.getId().equals(passoId));
 
-            // 2. REGRA DE NEGÓCIO (Opcional, mas excelente): Reordena os passos restantes (1, 2, 3...)
             for (int i = 0; i < roteiro.getPassos().size(); i++) {
                 roteiro.getPassos().get(i).setNumero(i + 1);
             }
 
-            // Salva as mudanças da ordenação
             roteiroRepository.save(roteiro);
         });
 
-        // 3. Deleta fisicamente o registro da tabela tb_passo
         passoRepository.deleteById(passoId);
 
-        // Redireciona limpando o cache e forçando uma nova busca limpa no banco
         return "redirect:/roteiros/visualizar/" + roteiroId;
     }
 
@@ -132,11 +127,13 @@ public class RoteiroController {
     public String editarPasso(@PathVariable("roteiroId") Long roteiroId,
                               @PathVariable("passoId") Long passoId,
                               @RequestParam("descricao") String descricao,
-                              @RequestParam("numero") Integer numero) {
+                              @RequestParam("numero") Integer numero,
+                              @RequestParam("tipoEntrada") String tipoEntrada) { // <--- PERMITE ALTERAR O TIPO NA EDIÇÃO
 
         passoRepository.findById(passoId).ifPresent(passo -> {
             passo.setDescricao(descricao);
             passo.setNumero(numero);
+            passo.setTipoEntrada(tipoEntrada); // <--- ATUALIZA O TIPO NO BANCO
             passoRepository.save(passo);
         });
 
