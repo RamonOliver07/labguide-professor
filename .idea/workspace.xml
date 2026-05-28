@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ec27e91a-4925-4867-9861-f7e13d1b488b" name="Changes" comment="feat: adiciona seletor de tipo de entrada (texto, numero, foto) nos passos do roteiro">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/RoteiroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/RoteiroController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/model/Roteiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/model/Roteiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/visualizar-roteiro.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/visualizar-roteiro.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,18 +25,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "RamonOliver07"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;RamonOliver07&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/RamonOliver07/labguide-professor.git",
-    "accountId": "140a993f-195f-4786-b838-8e58d81fadb1"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RamonOliver07/labguide-professor.git&quot;,
+    &quot;accountId&quot;: &quot;140a993f-195f-4786-b838-8e58d81fadb1&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="proportion" value="0.2047546" />
     <option name="selectedTabId" value="CurrentFile" />
