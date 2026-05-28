@@ -69,6 +69,10 @@
                             </button>
                         </form>
 
+                        <a th:href="@{/roteiros/visualizar/{id}/respostas(id=${roteiro.id})}" class="btn btn-success fw-bold px-4 shadow-sm">
+                            📊 Ver Respostas
+                        </a>
+
                         <form th:action="@{/roteiros/visualizar/{id}/excluir(id=${roteiro.id})}" method="POST" onsubmit="return confirm('Tem certeza ABSOLUTA que deseja apagar este roteiro? Todos os passos dele serão perdidos permanentemente!');">
                             <button type="submit" class="btn btn-danger fw-bold px-4 shadow-sm">
                                 🗑️ Excluir Roteiro
@@ -78,6 +82,8 @@
                         <a href="/roteiros" class="btn btn-light fw-semibold px-4 border">
                             Voltar para Lista
                         </a>
+
+
                     </div>
 
                 </div>

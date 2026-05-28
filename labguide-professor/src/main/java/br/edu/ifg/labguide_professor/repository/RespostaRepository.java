@@ -9,9 +9,13 @@ import java.util.List;
 
 @Repository
 public interface RespostaRepository extends JpaRepository<Resposta, Long> {
+
     // Busca todas as respostas de um aluno específico
     List<Resposta> findByAluno(Aluno aluno);
 
     // Busca todas as respostas dadas a um passo específico de um roteiro
     List<Resposta> findByPasso(Passo passo);
+
+    // NOVO: Mágica do Spring Data para buscar todas as respostas de um roteiro inteiro!
+    List<Resposta> findByPassoRoteiroId(Long roteiroId);
 }

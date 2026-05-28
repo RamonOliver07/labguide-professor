@@ -1,16 +1,16 @@
 package br.edu.ifg.labguide_professor.controller;
 
+import br.edu.ifg.labguide_professor.model.Aluno;
+import br.edu.ifg.labguide_professor.model.Resposta;
 import br.edu.ifg.labguide_professor.model.Roteiro;
 import br.edu.ifg.labguide_professor.model.Passo;
-import br.edu.ifg.labguide_professor.repository.RoteiroRepository;
-import br.edu.ifg.labguide_professor.repository.TurmaRepository;
-import br.edu.ifg.labguide_professor.repository.ProfessorRepository;
-import br.edu.ifg.labguide_professor.repository.PassoRepository;
+import br.edu.ifg.labguide_professor.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -28,6 +28,12 @@ public class RoteiroController {
 
     @Autowired
     private PassoRepository passoRepository;
+
+    @Autowired
+    private RespostaRepository respostaRepository;
+
+    @Autowired
+    private AlunoRepository alunoRepository;
 
     // Tela de cadastro de novo roteiro
     @GetMapping("/novo")
@@ -202,6 +208,34 @@ public class RoteiroController {
     public String excluirRoteiro(@PathVariable("id") Long id) {
         roteiroRepository.deleteById(id);
         // Volta para a lista principal após apagar
+        return "redirect:/roteiros";
+    }
+
+    // Rota para a TELA DE ACOMPANHAMENTO DE RESPOSTAS
+    @GetMapping("/visualizar/{id}/respostas")
+    public String acompanharRespostas(@PathVariable("id") Long id, Model model) {
+
+        Optional<Roteiro> roteiroOpt = roteiroRepository.findById(id);
+
+        if (roteiroOpt.isPresent()) {
+            Roteiro roteiro = roteiroOpt.get();
+            model.addAttribute("roteiro", roteiro);
+
+            // Busca todos os alunos matriculados na turma deste roteiro
+            // Filtro direto na memória para evitar erros de dependência caso não tenha o método no AlunoRepository
+            List<Aluno> alunosDaTurma = alunoRepository.findAll().stream()
+                    .filter(a -> a.getTurma() != null && a.getTurma().getId().equals(roteiro.getTurma().getId()))
+                    .toList();
+            model.addAttribute("alunos", alunosDaTurma);
+
+            // Busca todas as respostas que os alunos já enviaram para os passos deste roteiro
+            List<Resposta> respostas = respostaRepository.findByPassoRoteiroId(id);
+            model.addAttribute("respostas", respostas);
+
+            // Vai apontar para um arquivo HTML novo que vamos criar
+            return "acompanhar-respostas";
+        }
+
         return "redirect:/roteiros";
     }
 }
