@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/roteiros")
 public class RoteiroController {
@@ -152,5 +154,54 @@ public class RoteiroController {
         });
 
         return "redirect:/roteiros/visualizar/" + id;
+
+    }
+    // Rota para DUPLICAR (CLONAR) um roteiro inteiro com seus passos
+    @PostMapping("/visualizar/{id}/duplicar")
+    public String duplicarRoteiro(@PathVariable("id") Long id) {
+
+        Optional<Roteiro> roteiroOriginalOpt = roteiroRepository.findById(id);
+
+        if (roteiroOriginalOpt.isPresent()) {
+            Roteiro original = roteiroOriginalOpt.get();
+
+            // 1. Cria a cópia do Cabeçalho do Roteiro
+            Roteiro copia = new Roteiro();
+            copia.setTitulo(original.getTitulo() + " (Cópia)");
+            copia.setNome(original.getNome() + " (Cópia)");
+            copia.setDescricao(original.getDescricao());
+            copia.setTurma(original.getTurma()); // Mantém a turma atual, mas o professor pode editar depois
+            copia.setProfessor(original.getProfessor());
+            copia.setStatus("RASCUNHO"); // A cópia sempre nasce como rascunho por segurança
+
+            // Salva o roteiro novo para gerar o ID dele no banco
+            Roteiro roteiroSalvo = roteiroRepository.save(copia);
+
+            // 2. Copia todos os Passos (se existirem)
+            if (original.getPassos() != null && !original.getPassos().isEmpty()) {
+                for (Passo passoOriginal : original.getPassos()) {
+                    Passo passoCopia = new Passo();
+                    passoCopia.setNumero(passoOriginal.getNumero());
+                    passoCopia.setDescricao(passoOriginal.getDescricao());
+                    passoCopia.setTipoEntrada(passoOriginal.getTipoEntrada()); // Texto, Numero ou Foto
+                    passoCopia.setRoteiro(roteiroSalvo); // Vincula o passo clonado ao ROTEIRO NOVO
+
+                    passoRepository.save(passoCopia);
+                }
+            }
+
+            // Redireciona o professor direto para a TELA DE EDIÇÃO do roteiro recém-clonado
+            return "redirect:/roteiros/editar/" + roteiroSalvo.getId();
+        }
+
+        return "redirect:/roteiros";
+    }
+
+    // Rota para EXCLUIR o roteiro inteiro
+    @PostMapping("/visualizar/{id}/excluir")
+    public String excluirRoteiro(@PathVariable("id") Long id) {
+        roteiroRepository.deleteById(id);
+        // Volta para a lista principal após apagar
+        return "redirect:/roteiros";
     }
 }

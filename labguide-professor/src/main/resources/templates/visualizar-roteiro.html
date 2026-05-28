@@ -58,11 +58,24 @@
                     <h5 class="fw-bold text-secondary mb-3">Contextualização do Experimento</h5>
                     <p class="text-muted lh-lg fs-5 mb-0" style="white-space: pre-line;" th:text="${roteiro.descricao}">Descrição...</p>
 
-                    <div class="mt-4 pt-3">
-                        <a th:href="@{/roteiros/editar/{id}(id=${roteiro.id})}" class="btn btn-warning fw-bold px-4 text-dark">
-                            Editar Cabeçalho
+                    <div class="mt-4 pt-3 d-flex flex-wrap gap-2">
+                        <a th:href="@{/roteiros/editar/{id}(id=${roteiro.id})}" class="btn btn-warning fw-bold px-4 text-dark shadow-sm">
+                            ✏️ Editar Cabeçalho
                         </a>
-                        <a href="/roteiros" class="btn btn-light fw-semibold px-4 border ms-2">
+
+                        <form th:action="@{/roteiros/visualizar/{id}/duplicar(id=${roteiro.id})}" method="POST" onsubmit="return confirm('Deseja criar uma cópia exata deste roteiro e de todos os seus passos?');">
+                            <button type="submit" class="btn btn-info fw-bold px-4 text-dark shadow-sm">
+                                📋 Duplicar Roteiro
+                            </button>
+                        </form>
+
+                        <form th:action="@{/roteiros/visualizar/{id}/excluir(id=${roteiro.id})}" method="POST" onsubmit="return confirm('Tem certeza ABSOLUTA que deseja apagar este roteiro? Todos os passos dele serão perdidos permanentemente!');">
+                            <button type="submit" class="btn btn-danger fw-bold px-4 shadow-sm">
+                                🗑️ Excluir Roteiro
+                            </button>
+                        </form>
+
+                        <a href="/roteiros" class="btn btn-light fw-semibold px-4 border">
                             Voltar para Lista
                         </a>
                     </div>
