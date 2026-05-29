@@ -1,49 +1,276 @@
-# 🔬 LabGuide - Módulo do Professor
+# 🔬 LabGuide — Módulo do Professor
 
-O **LabGuide** é uma plataforma focada no apoio à experimentação investigativa em laboratórios de ensino. Este módulo permite que professores criem roteiros dinâmicos, gerenciem turmas e acompanhem o progresso dos alunos em tempo real.
+> Recurso Digital para Otimização da Experimentação no Ensino de Química.
 
----
+O **LabGuide** é uma plataforma educacional desenvolvida no IFG com o objetivo de apoiar práticas experimentais investigativas em laboratórios de ensino de química.
 
-## 🚀 Status do Projeto
-O sistema está em pleno desenvolvimento, com integração completa entre back-end, banco de dados e front-end web.
-> **Status Atual:** Módulo de Gestão de Roteiros e Passos Funcional ✅
-
-### ✨ Funcionalidades Concluídas (Módulo Professor)
-* **Gestão de Roteiros:** Criação, edição e controle de visibilidade via Status (Rascunho / Publicado).
-* **Passos Dinâmicos:** Inserção, edição via Modal e exclusão de etapas, com reordenação sequencial automática.
-* **Tipos de Entrada:** Configuração do formato de resposta esperado do aluno em cada etapa (Texto, Número ou Foto).
+Este módulo permite que professores criem roteiros experimentais digitais, organizem turmas, acompanhem respostas dos alunos e gerenciem atividades laboratoriais de forma dinâmica e integrada.
 
 ---
 
-## 🏗️ Arquitetura e Tecnologias
+# 🚀 Status do Projeto
 
-O projeto utiliza o padrão **MVC (Model-View-Controller)** para garantir organização e escalabilidade.
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
+![License](https://img.shields.io/badge/license-Academic-lightgrey)
 
-* **Linguagem:** Java 21
-* **Framework:** Spring Boot 3.x
-* **Persistência:** Spring Data JPA / Hibernate
-* **Banco de Dados:** PostgreSQL
-* **Front-end:** Thymeleaf, HTML5, Bootstrap 5
-* **Auxiliares:** Lombok (Produtividade) e Maven (Gerenciamento de dependências)
+✅ Integração completa entre Front-end, Back-end e Banco de Dados.
 
----
+### 📌 Status Atual
 
-## 📊 Estrutura de Dados (DER)
-
-O sistema foi modelado para integrar perfeitamente o ambiente Web do professor com o ambiente Mobile do aluno:
-
-- **Professor:** Gestor de conteúdos e turmas.
-- **Roteiro & Passos:** Estrutura sequencial da aula prática.
-- **Turma & Aluno:** Organização dos usuários.
-- **Resposta:** O ponto de integração entre o professor e os resultados experimentais dos alunos.
+**Módulo de Gestão de Roteiros e Passos Funcional**
 
 ---
 
-## 📂 Organização de Pacotes
+# ✨ Funcionalidades Implementadas
+
+## 👨‍🏫 Módulo do Professor
+
+### 📚 Gestão de Roteiros
+
+* Criação de roteiros experimentais
+* Edição de roteiros
+* Exclusão de roteiros
+* Controle de status:
+
+    * Rascunho
+    * Publicado
+
+### 🧪 Gestão de Passos
+
+* Adição dinâmica de etapas
+* Reordenação automática
+* Exclusão de passos
+* Edição via modal
+
+### 📝 Tipos de Entrada
+
+Configuração do formato esperado para respostas dos alunos:
+
+* Texto
+* Número
+* Foto
+
+### 👥 Gestão de Turmas
+
+* Criação de turmas
+* Organização de alunos
+* Associação entre roteiro e turma
+
+---
+
+# 🏗️ Arquitetura do Sistema
+
+O sistema utiliza arquitetura MVC (Model-View-Controller), promovendo organização, manutenção e escalabilidade.
+
+```text
++----------------------+
+|     Front-end        |
+| Thymeleaf + Bootstrap|
++----------+-----------+
+           |
+           | HTTP
+           v
++----------------------+
+|   Spring Boot API    |
+| Controllers/Services |
++----------+-----------+
+           |
+           | JPA/Hibernate
+           v
++----------------------+
+|     PostgreSQL       |
+|   Banco de Dados     |
++----------------------+
+```
+
+---
+
+# 📊 Modelagem do Sistema
+
+## 🗄️ Entidades Principais
+
+| Entidade  | Responsabilidade                 |
+| --------- | -------------------------------- |
+| Professor | Gerencia roteiros e turmas       |
+| Turma     | Organização dos alunos           |
+| Roteiro   | Estrutura do experimento         |
+| Passo     | Etapas experimentais             |
+| Resposta  | Resultados enviados pelos alunos |
+
+---
+
+# 🔗 Relacionamentos
+
+```text
+Professor
+   ├── Turmas
+   └── Roteiros
+            └── Passos
+                     └── Respostas
+                     
+                     
+```
+
+
+---
+
+# 🧩 Estrutura do Banco de Dados (DER)
+
+## Tabela tb_roteiro
+
+| Campo        | Tipo    |
+| ------------ | ------- |
+| id           | bigint  |
+| titulo       | varchar |
+| nome         | varchar |
+| descricao    | text    |
+| professor_id | bigint  |
+| turma_id     | bigint  |
+
+---
+
+## Tabela tb_passo
+
+| Campo      | Tipo    |
+| ---------- | ------- |
+| id         | bigint  |
+| ordem      | integer |
+| instrucao  | text    |
+| roteiro_id | bigint  |
+
+---
+
+## Tabela tb_resposta
+
+| Campo      | Tipo      |
+| ---------- | --------- |
+| id         | bigint    |
+| conteudo   | text      |
+| data_envio | timestamp |
+| aluno_id   | bigint    |
+| passo_id   | bigint    |
+
+---
+
+# 🧠 Diagrama UML
+
+```text
+Professor
+   │
+   ├── Turma
+   │
+   └── Roteiro
+          └── Passo
+                 └── Resposta
+```
+
+---
+
+# 📂 Organização de Pacotes
 
 ```text
 src/main/java/br/edu/ifg/labguide_professor
-├── controller   # Endpoints e rotas da aplicação Web
-├── model        # Entidades JPA (Mapeamento das Tabelas)
-├── repository   # Interfaces de acesso ao banco (Spring Data)
-└── service      # Regras de negócio
+│
+├── controller
+│   └── Endpoints e rotas da aplicação
+│
+├── model
+│   └── Entidades JPA
+│
+├── repository
+│   └── Interfaces Spring Data JPA
+│
+├── service
+│   └── Regras de negócio
+│
+└── config
+    └── Configurações do sistema
+```
+
+---
+
+# ⚙️ Tecnologias Utilizadas
+
+| Tecnologia      | Função                        |
+| --------------- | ----------------------------- |
+| Java 21         | Linguagem principal           |
+| Spring Boot 3   | Framework back-end            |
+| PostgreSQL      | Banco de dados                |
+| Spring Data JPA | Persistência                  |
+| Hibernate       | ORM                           |
+| Thymeleaf       | Renderização Web              |
+| Bootstrap 5     | Interface visual              |
+| Lombok          | Produtividade                 |
+| Maven           | Gerenciamento de dependências |
+
+---
+
+# ▶️ Como Executar o Projeto
+
+## Pré-requisitos
+
+* Java 21
+* Maven
+* PostgreSQL
+
+---
+
+## Clone o repositório
+
+```bash
+git clone https://github.com/seu-usuario/labguide-professor.git
+```
+
+---
+
+## Configure o banco de dados
+
+Editar o arquivo:
+
+```text
+src/main/resources/application.properties
+```
+
+---
+
+## Execute o projeto
+
+```bash
+mvn spring-boot:run
+```
+
+---
+
+# 🛣️ Roadmap
+
+## ✅ Concluído
+
+* [x] CRUD de roteiros
+* [x] CRUD de passos
+* [x] Controle de status
+* [x] Reordenação automática
+* [x] Integração PostgreSQL
+
+## 🚧 Em desenvolvimento
+
+* [ ] Upload de imagens
+* [ ] Dashboard do professor
+* [ ] Autenticação JWT
+* [ ] Módulo mobile do aluno
+* [ ] Relatórios experimentais
+
+---
+
+# 🎓 Projeto Acadêmico
+
+Projeto desenvolvido como Trabalho de Conclusão de Curso (TCC) no Instituto Federal de Goiás (IFG).
+
+---
+
+# 👨‍💻 Autor
+
+**Ramon Oliveira**
+Desenvolvedor do módulo LabGuide Professor.
