@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import java.util.List;
 import java.util.Optional;
@@ -237,5 +240,43 @@ public class RoteiroController {
         }
 
         return "redirect:/roteiros";
+    }
+    // Rota para EXPORTAR AS RESPOSTAS PARA EXCEL (.csv)
+    @GetMapping("/{id}/exportar") // <- CORRIGIDO: Retirado o /roteiros do início
+    public void exportarRespostasParaExcel(@PathVariable("id") Long id, HttpServletResponse response) throws IOException {
+
+        // 1. Busca o roteiro e as respostas no banco
+        // (Usando get() do Optional já que a rota do botão só aparece se o roteiro existir)
+        Roteiro roteiro = roteiroRepository.findById(id).get();
+        List<Resposta> respostas = respostaRepository.findByPassoRoteiroId(id);
+
+        // 2. Configura o arquivo para download no navegador
+        response.setContentType("text/csv; charset=UTF-8");
+        response.setHeader("Content-Disposition", "attachment; filename=\"respostas_" + roteiro.getTitulo().replace(" ", "_") + ".csv\"");
+
+        // 3. Escreve os dados no arquivo
+        PrintWriter writer = response.getWriter();
+
+        // Escreve o BOM (Byte Order Mark) para o Excel reconhecer acentos
+        writer.write('\uFEFF');
+
+        // Cabeçalho da planilha
+        writer.println("Nome do Aluno;Passo;Pergunta/Instrução;Resposta do Aluno;Data de Envio");
+
+        // Preenche as linhas com os dados reais
+        for (Resposta r : respostas) {
+            String nomeAluno = r.getAluno().getNome();
+            // A sua classe Passo usa 'numero' em vez de 'ordem'
+            String numeroPasso = String.valueOf(r.getPasso().getNumero());
+            // A sua classe usa 'descricao' em vez de 'instrucao'
+            String instrucao = r.getPasso().getDescricao().replace(";", ",");
+            String conteudo = r.getConteudo().replace(";", ",").replace("\n", " ");
+            String data = r.getDataEnvio().toString();
+
+            writer.println(nomeAluno + ";" + numeroPasso + ";" + instrucao + ";" + conteudo + ";" + data);
+        }
+
+        writer.flush();
+        writer.close();
     }
 }

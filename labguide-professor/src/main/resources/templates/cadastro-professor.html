@@ -6,29 +6,67 @@
     <title>LabGuide - Cadastrar Professor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* ==========================================
+           NOVA PALETA DE CORES DO SISTEMA (PROTÓTIPO)
+           ========================================== */
+        :root {
+            --labguide-primary: #2B5D70; /* Cor principal cravada! */
+            --labguide-dark: #1f4351;    /* Tom mais escuro para o hover do botão */
+        }
+
         html, body { height: 100%; margin: 0; }
-        body { display: flex; flex-direction: column; min-height: 100vh; }
+        body { display: flex; flex-direction: column; min-height: 100vh; background-color: #f8f9fa; }
         .main-content { flex: 1; }
-        .bg-custom-dark { background-color: #08565d; }
-        .text-custom { color: #0d8a94; }
-        .btn-custom { background-color: #0d8a94; color: white; }
-        .btn-custom:hover { background-color: #0a6e76; color: white; }
+
+        /* Classes padronizadas usando a variável de cor */
+        .bg-labguide { background-color: var(--labguide-primary) !important; }
+        .text-labguide { color: var(--labguide-primary) !important; }
+
+        .btn-labguide {
+            background-color: var(--labguide-primary);
+            color: white;
+            border: none;
+        }
+        .btn-labguide:hover {
+            background-color: var(--labguide-dark);
+            color: white;
+        }
+
+        /* Estilização suave para os campos de texto */
+        .form-control:focus {
+            border-color: var(--labguide-primary);
+            box-shadow: 0 0 0 0.25rem rgba(43, 93, 112, 0.25);
+        }
     </style>
 </head>
-<body class="bg-light">
+<body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-custom-dark mb-4 shadow-sm">
+<!-- NAVBAR PADRONIZADA COM A COR OFICIAL -->
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm mb-4 bg-labguide">
     <div class="container">
-        <a class="navbar-brand fw-bold text-white" href="/">LabGuide</a>
+        <a class="navbar-brand fw-bold" th:href="@{/}">🧪 LabGuide</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/alunos">Alunos</a>
-                <a class="nav-link" href="/turmas/novo">Turmas</a>
-                <a class="nav-link active" href="/professores">Professores</a>
-                <a class="nav-link" href="/roteiros">Roteiros de Química</a>
+            <!-- Menu limpo, sem a aba de Professores para acesso comum -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link fw-semibold" href="/alunos">Alunos</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="/turmas/novo">Turmas</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="/roteiros">Roteiros</a></li>
+            </ul>
+
+            <div class="d-flex align-items-center">
+                <!-- Nome dinâmico do professor -->
+                <span class="text-white fw-semibold me-3 d-none d-lg-block"
+                      th:text="'Olá, ' + ${#authentication.name}">Olá, Professor</span>
+
+                <!-- Botão de Sair Seguro -->
+                <form th:action="@{/logout}" method="post" class="m-0">
+                    <button type="submit" class="btn btn-outline-light btn-sm fw-bold px-3">Sair</button>
+                </form>
             </div>
         </div>
     </div>
@@ -38,31 +76,35 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-5">
 
-            <div th:if="${param.sucesso}" class="alert alert-success alert-dismissible fade show rounded-3 shadow-sm" role="alert">
-                <strong>Sucesso!</strong> O professor foi cadastrado corretamente.
+            <!-- Mensagem de Sucesso Ajustada -->
+            <div th:if="${param.sucesso}" class="alert alert-success alert-dismissible fade show rounded-3 shadow-sm mt-4" role="alert">
+                <strong>✅ Sucesso!</strong> O professor foi cadastrado corretamente.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
 
-            <div class="card shadow-sm border-0 rounded-3">
-                <div class="card-body p-4">
-                    <h3 class="card-title mb-4 text-center fw-bold text-custom">Novo Professor</h3>
+            <div class="card shadow-sm border-0 rounded-3 mt-4">
+                <div class="card-body p-4 p-md-5">
+                    <h3 class="card-title mb-4 text-center fw-bold text-labguide">Novo Professor</h3>
 
                     <form th:action="@{/professores/salvar}" method="post">
                         <div class="mb-3">
                             <label for="nome" class="form-label fw-semibold text-secondary">Nome Completo</label>
-                            <input type="text" class="form-control text-dark" id="nome" name="nome" placeholder="Digite o nome completo" required>
+                            <input type="text" class="form-control bg-light border-0 shadow-sm text-dark" id="nome" name="nome" placeholder="Digite o nome completo" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label fw-semibold text-secondary">E-mail</label>
-                            <input type="email" class="form-control text-dark" id="email" name="email" placeholder="exemplo@ifg.edu.br" required>
+                            <input type="email" class="form-control bg-light border-0 shadow-sm text-dark" id="email" name="email" placeholder="exemplo@ifg.edu.br" required>
                         </div>
                         <div class="mb-4">
                             <label for="senha" class="form-label fw-semibold text-secondary">Senha</label>
-                            <input type="password" class="form-control text-dark" id="senha" name="senha" placeholder="Crie uma senha segura" required>
+                            <input type="password" class="form-control bg-light border-0 shadow-sm text-dark" id="senha" name="senha" placeholder="Crie uma senha segura" required>
                         </div>
+
+                        <hr class="text-muted mt-4 mb-4">
+
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-custom btn-lg rounded-3 fw-bold">Cadastrar Professor</button>
-                            <a href="/professores" class="btn btn-light rounded-3 fw-semibold border">Ver todos os cadastrados</a>
+                            <button type="submit" class="btn btn-labguide btn-lg rounded-3 fw-bold shadow-sm">Cadastrar Professor</button>
+                            <a href="/professores" class="btn btn-light rounded-3 fw-semibold border shadow-sm">Ver todos os cadastrados</a>
                         </div>
                     </form>
                 </div>
@@ -72,33 +114,31 @@
     </div>
 </div>
 
-<footer class="bg-dark text-white pt-4 pb-2 border-top border-secondary mt-auto">
+<!-- RODAPÉ COMPLETO -->
+<footer class="text-light py-4 mt-auto" style="background-color: #2c2c2c;">
     <div class="container">
-        <div class="row text-center text-md-start">
-            <div class="col-md-4 mb-3">
-                <h5 class="fw-bold text-uppercase small text-white-50">Plataforma</h5>
-                <p class="mb-1 fw-bold text-white">LabGuide</p>
-                <p class="small text-white-50">Ferramenta de Apoio à Experimentação Investigativa em Química</p>
+        <div class="row">
+            <div class="col-md-4 mb-3 mb-md-0">
+                <h6 class="text-uppercase fw-bold text-white-50">Plataforma</h6>
+                <p class="mb-0 fw-semibold text-white">LabGuide</p>
+                <small class="text-white-50">Ferramenta de Apoio à Experimentação Investigativa em Química</small>
             </div>
-            <div class="col-md-4 mb-3">
-                <h5 class="fw-bold text-uppercase small text-white-50">Links Úteis</h5>
-                <ul class="list-unstyled">
-                    <li class="mb-1"><a href="http://suap.ifg.edu.br" target="_blank" class="text-decoration-none text-white small opacity-75">SUAP Portal</a></li>
-                    <li class="mb-1"><a href="https://moodle.ifg.edu.br" target="_blank" class="text-decoration-none text-white small opacity-75">Moodle IFG</a></li>
+            <div class="col-md-4 mb-3 mb-md-0">
+                <h6 class="text-uppercase fw-bold text-white-50">Links Úteis</h6>
+                <ul class="list-unstyled mb-0">
+                    <li><a href="http://suap.ifg.edu.br" target="_blank" class="text-white-50 text-decoration-none small">SUAP Portal</a></li>
+                    <li><a href="https://moodle.ifg.edu.br" target="_blank" class="text-white-50 text-decoration-none small">Moodle IFG</a></li>
                 </ul>
             </div>
-            <div class="col-md-4 mb-3">
-                <h5 class="fw-bold text-uppercase small text-white-50">Contato</h5>
-                <p class="small text-white mb-1 fw-semibold">Instituto Federal de Goiás - Campus Luziânia</p>
-                <p class="small text-white-50 mb-0">Rua São Bartolomeu, s/n - Vila Roriz</p>
-                <p class="small text-white-50">Luziânia - GO | CEP: 72800-000</p>
+            <div class="col-md-4">
+                <h6 class="text-uppercase fw-bold text-white-50">Contato</h6>
+                <p class="mb-0 fw-semibold small text-white">Instituto Federal de Goiás - Campus Luziânia</p>
+                <small class="text-white-50">Rua São Bartolomeu, s/n - Vila Roriz<br>Luziânia - GO | CEP: 72800-000</small>
             </div>
         </div>
-        <hr class="border-secondary my-2">
-        <div class="row">
-            <div class="col text-center">
-                <small class="text-white-50 text-center d-block">© 2026 LabGuide - Instituto Federal de Goiás (IFG)</small>
-            </div>
+        <hr class="border-secondary my-3">
+        <div class="text-center small text-white-50">
+            &copy; 2026 LabGuide - Instituto Federal de Goiás (IFG)
         </div>
     </div>
 </footer>

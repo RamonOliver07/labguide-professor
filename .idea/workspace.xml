@@ -5,10 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec27e91a-4925-4867-9861-f7e13d1b488b" name="Changes" comment="feat: adiciona seletor de tipo de entrada (texto, numero, foto) nos passos do roteiro">
-      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/acompanhar-respostas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/RoteiroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/RoteiroController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/repository/RespostaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/repository/RespostaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/acompanhar-respostas.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/acompanhar-respostas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-aluno.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-aluno.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-professor.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-professor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-roteiro.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-roteiro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-turma.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-turma.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/editar-roteiro.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/editar-roteiro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-alunos.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-alunos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-professores.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-professores.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-roteiros.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-roteiros.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/visualizar-roteiro.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/visualizar-roteiro.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +33,7 @@
       <list>
         <option value="Interface" />
         <option value="AnnotationType" />
+        <option value="HTTP Request" />
         <option value="Class" />
         <option value="HTML File" />
       </list>
@@ -42,6 +54,72 @@
     &quot;accountId&quot;: &quot;140a993f-195f-4786-b838-8e58d81fadb1&quot;
   }
 }</component>
+  <component name="HttpClientOnboardingState">{
+  &quot;isOnboardingCommentShown&quot;: true
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="5.6266496335172545E-170" />
+      <entry key="S5" value="1.995721560299913E-68" />
+      <entry key="S10" value="1.412700095667836E-34" />
+      <entry key="S30" value="5.208148093190675E-12" />
+      <entry key="S60" value="2.282136739531865E-6" />
+      <entry key="M2" value="0.0015107803953709371" />
+      <entry key="M5" value="0.0812467996733612" />
+      <entry key="M10" value="0.546842084108082" />
+      <entry key="M15" value="1.3605078803756236" />
+      <entry key="M30" value="4.01570279681893" />
+      <entry key="H1" value="8.637131269008528" />
+      <entry key="H2" value="16.410431488285717" />
+      <entry key="H4" value="25.624155664823622" />
+      <entry key="D1" value="39.950638600630484" />
+      <entry key="W1" value="43.39073160192545" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000055302813" />
+      <entry key="S2" value="1.0086235642759307" />
+      <entry key="S5" value="1.1493791478827102" />
+      <entry key="S10" value="1.3887798918248462" />
+      <entry key="S30" value="1.8602782837916454" />
+      <entry key="S60" value="2.2253064209179665" />
+      <entry key="M2" value="2.6810299663334964" />
+      <entry key="M5" value="3.901479927969491" />
+      <entry key="M10" value="5.414052881643612" />
+      <entry key="M15" value="6.4345083133499825" />
+      <entry key="M30" value="8.105962352669078" />
+      <entry key="H1" value="9.491412695710258" />
+      <entry key="H2" value="10.651499660578768" />
+      <entry key="H4" value="11.572781254553826" />
+      <entry key="D1" value="12.710643040762617" />
+      <entry key="W1" value="12.957103586463582" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="4.460955800931631E-9" />
+      <entry key="MS500" value="0.02137398928250444" />
+      <entry key="S2" value="0.3859102145079299" />
+      <entry key="S5" value="0.7855031937264013" />
+      <entry key="S10" value="1.1505631123534352" />
+      <entry key="S30" value="1.7470084785554079" />
+      <entry key="S60" value="2.153316056261553" />
+      <entry key="M2" value="2.6226128548645793" />
+      <entry key="M5" value="3.9205485472699975" />
+      <entry key="M10" value="5.909455220519137" />
+      <entry key="M15" value="7.752601524569096" />
+      <entry key="M30" value="12.093947673612124" />
+      <entry key="H1" value="18.111853405450145" />
+      <entry key="H2" value="27.052351234427864" />
+      <entry key="H4" value="37.19165530393029" />
+      <entry key="D1" value="52.66030104470338" />
+      <entry key="W1" value="56.34769201813618" />
+    </decayedShown>
+  </component>
   <component name="ProblemsViewState">
     <option name="proportion" value="0.2047546" />
     <option name="selectedTabId" value="CurrentFile" />
@@ -57,30 +135,63 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.LabguideProfessorApplication.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JUnit.All in labguide-professor.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dell/Downloads/labguide-professor&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.LabguideProfessorApplication.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "HTTP Request.teste | #1.executor": "Run",
+    "HTTP Request.teste | #2.executor": "Run",
+    "HTTP Request.teste | POST http://localhost:8080/api/mobile/enviar-resposta.executor": "Run",
+    "HTTP Request.teste | TESTE 3: Envio de Foto do Próprio PC.executor": "Run",
+    "JUnit.All in labguide-professor.executor": "Run",
+    "JUnit.static.img in labguide-professor.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Dell/Downloads/labguide-professor/labguide-professor/src/main/resources/static/img",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "File.Encoding",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="br.edu.ifg.labguide_professor" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dell\Downloads\labguide-professor\labguide-professor\src\main\resources\static\img" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationStatuses">
+      <map>
+        <entry key="HttpClient.HttpRequestRunConfigurationType">
+          <value>
+            <map>
+              <entry key="teste | #2" value="STOPPED" />
+              <entry key="teste | POST http://localhost:8080/api/mobile/enviar-resposta" value="STOPPED" />
+              <entry key="teste | TESTE 3: Envio de Foto do Próprio PC" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="RunManager" selected="Application.LabguideProfessorApplication">
     <configuration name="LabguideProfessorApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -96,9 +207,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in labguide-professor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="teste | POST http://localhost:8080/api/mobile/enviar-resposta" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/labguide-professor/teste.http" executionIdentifier="POST http://localhost:8080/api/mobile/enviar-resposta" index="4" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="teste | TESTE 3: Envio de Foto do Próprio PC" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/labguide-professor/teste.http" executionIdentifier="TESTE 3: Envio de Foto do Próprio PC" index="3" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="teste | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/labguide-professor/teste.http" executionIdentifier="#2" index="2" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="static.img in labguide-professor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="labguide-professor" />
-      <option name="PACKAGE_NAME" value="" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="static.img.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="static.img" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -107,14 +233,18 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.LabguideProfessorApplication" />
-        <item itemvalue="JUnit.All in labguide-professor" />
+        <item itemvalue="JUnit.static.img in labguide-professor" />
+        <item itemvalue="HTTP Request.teste | #2" />
+        <item itemvalue="HTTP Request.teste | POST http://localhost:8080/api/mobile/enviar-resposta" />
+        <item itemvalue="HTTP Request.teste | TESTE 3: Envio de Foto do Próprio PC" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169" />
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
       </set>
     </attachedChunks>
   </component>
@@ -125,6 +255,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1775228873660</updated>
+      <workItem from="1779991019567" duration="5402000" />
+      <workItem from="1780004511356" duration="20212000" />
     </task>
     <task id="LOCAL-00001" summary="feat: adiciona seletor de tipo de entrada (texto, numero, foto) nos passos do roteiro">
       <option name="closed" value="true" />
@@ -161,12 +293,27 @@
     <option name="localTasksCounter" value="5" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
