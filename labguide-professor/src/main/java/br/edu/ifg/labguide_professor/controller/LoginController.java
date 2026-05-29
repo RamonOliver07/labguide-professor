@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class HomeController {
+public class LoginController {
 
-    @GetMapping("/")
-    public String index() {
-        return "index"; // Esse renderiza o index.html
+    @GetMapping("/login")
+    public String telaLogin() {
+        return "login"; // Vai procurar o arquivo login.html
     }
 }

@@ -1,95 +1,74 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LabGuide - Portal de Serviços</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <title>LabGuide - Início</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        html, body { height: 100%; margin: 0; font-family: sans-serif; }
-        body { display: flex; min-height: 100vh; background-color: #0d8a94; color: white; }
+        /* Imagem de fundo com um filtro escuro por cima para o texto branco aparecer bem */
+        .hero-section {
+            height: 100vh;
+            /* AQUI: Trocamos o link da internet pelo caminho da sua foto local */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url('/img/fundo-ifg.png') no-repeat center center;
+            background-size: cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
 
-        /* Menu Lateral (Sidebar) */
-        .sidebar { width: 260px; background-color: white; color: #333; display: flex; flex-direction: column; border-right: 1px solid #dee2e6; }
-        .sidebar-header { padding: 20px; border-bottom: 1px solid #eee; }
-        .sidebar-menu { flex: 1; padding: 10px 0; }
-        .menu-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; color: #444; text-decoration: none; font-size: 0.95rem; transition: background 0.2s; }
-        .menu-item:hover { background-color: #f8f9fa; color: #0d8a94; }
-        .menu-item i { font-size: 1.2rem; }
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-        /* Conteúdo Central */
-        .main-content { flex: 1; display: flex; flex-direction: column; padding: 40px; }
-        .content-body { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+        .btn-labguide {
+            background-color: #007b7f;
+            color: white;
+            font-weight: bold;
+            border-radius: 20px;
+            padding: 8px 24px;
+        }
 
-        /* Card de Login */
-        .login-card { background: white; color: #333; border-radius: 15px; width: 380px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-        .btn-login { background-color: #0d8a94; color: white; font-weight: bold; }
-        .btn-login:hover { background-color: #0a6e76; color: white; }
-
-        /* Responsividade básica */
-        @media (max-width: 992px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #dee2e6; }
-            .content-body { flex-direction: column; text-center: center; }
-            .login-card { width: 100%; }
+        .btn-labguide:hover {
+            background-color: #005f63;
+            color: white;
         }
     </style>
 </head>
 <body>
 
-<div class="sidebar">
-    <div class="sidebar-header">
-        <h4 class="fw-bold m-0 text-dark" style="color: #0d8a94 !important;">LabGuide</h4>
-        <small class="text-muted">Portal de Serviços</small>
+<!-- Cabeçalho (Navbar) -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/" style="color: #007b7f;">🧪 LabGuide</a>
+
+        <!-- Botão que envia o professor para o Login -->
+        <div class="d-flex">
+            <a th:href="@{/login}" class="btn btn-labguide shadow-sm">Entrar / Login</a>
+        </div>
     </div>
-    <div class="sidebar-menu">
-        <a href="/" class="menu-item fw-bold text-success"><span><i class="bi bi-house-door me-2"></i> Início</span></a>
-        <a href="/alunos" class="menu-item"><span><i class="bi bi-people me-2"></i> Alunos</span><i class="bi bi-chevron-right small text-muted"></i></a>
-        <a href="/turmas/novo" class="menu-item"><span><i class="bi bi-backpack me-2"></i> Turmas</span><i class="bi bi-chevron-right small text-muted"></i></a>
-        <a href="/professores" class="menu-item"><span><i class="bi bi-person-workspace me-2"></i> Professores</span><i class="bi bi-chevron-right small text-muted"></i></a>
-        <a href="/roteiros" class="menu-item"><span><i class="bi bi-vial me-2"></i> Roteiros</span><i class="bi bi-chevron-right small text-muted"></i></a>
+</nav>
+
+<!-- Banner Central (Hero Section) -->
+<div class="hero-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="display-3 fw-bold mb-4">A Revolução na Experimentação Investigativa</h1>
+                <p class="lead mb-5">
+                    Conecte professores e alunos em laboratórios de química através de roteiros interativos, dinâmicos e em tempo real.
+                </p>
+                <a th:href="@{/login}" class="btn btn-light btn-lg text-dark fw-bold px-5 rounded-pill shadow">
+                    Acessar Portal do Professor
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="main-content">
-    <div class="content-body">
-
-        <div class="welcome-text col-lg-6">
-            <h1 class="display-4 fw-bold mb-4">Bem-vindo(a) ao Portal do LabGuide!</h1>
-            <p class="fs-5 opacity-90 lh-base">
-                Acesse os serviços computacionais de apoio à experimentação investigativa em Química de um jeito simples, rápido e intuitivo.
-            </p>
-        </div>
-
-        <div class="login-card">
-            <h4 class="fw-bold mb-4 text-dark">Login</h4>
-            <form action="#" method="POST">
-                <div class="mb-3">
-                    <label for="username" class="form-label small fw-semibold text-secondary">Identificação ou E-mail</label>
-                    <input type="text" class="form-control py-2" id="username" placeholder="Digite seu usuário">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label small fw-semibold text-secondary">Senha</label>
-                    <input type="password" class="form-control py-2" id="password" placeholder="Digite sua senha">
-                </div>
-                <div class="d-grid gap-2 mt-4">
-                    <button type="button" class="btn btn-login py-2 rounded-3" onclick="location.href='/roteiros'">Acessar minha conta</button>
-                </div>
-                <div class="d-flex justify-content-between mt-3">
-                    <a href="#" class="small text-decoration-none text-muted">Primeiro Acesso</a>
-                    <a href="#" class="small text-decoration-none text-muted">Esqueci minha senha</a>
-                </div>
-            </form>
-        </div>
-
-    </div>
-
-    <div class="text-center pt-4 border-top border-light border-opacity-25 mt-4">
-        <small class="opacity-75">© 2026 LabGuide - Instituto Federal de Goiás (IFG) - Campus Luziânia</small>
-    </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

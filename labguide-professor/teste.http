@@ -1,0 +1,32 @@
+### TESTE 1: Envio de Resposta em TEXTO (Modelo)
+POST http://localhost:8080/api/mobile/enviar-resposta
+Content-Type: application/json
+
+{
+  "alunoId": 1,
+  "passoId": 13,
+  "conteudo": "A solução ficou rosa choque pelo IntelliJ!"
+}
+
+###
+
+### TESTE 2: Envio de Resposta em FOTO
+POST http://localhost:8080/api/mobile/enviar-resposta
+Content-Type: application/json
+
+{
+  "alunoId": 1,
+  "passoId": 22,
+  "conteudo": "https://images.unsplash.com/photo-1451187580459-43490279c0fa"
+}
+
+### TESTE 3: Envio de Foto do Próprio PC
+POST http://localhost:8080/api/mobile/enviar-resposta
+Content-Type: application/json
+
+{
+  "alunoId": 1,
+  "passoId": 22,
+  "conteudo": "test labguide.png"
+}
+
