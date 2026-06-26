@@ -41,7 +41,6 @@
 </head>
 <body>
 
-<!-- NAVBAR PADRONIZADA COM A COR OFICIAL -->
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm mb-4 bg-labguide">
     <div class="container">
         <a class="navbar-brand fw-bold" th:href="@{/}">🧪 LabGuide</a>
@@ -49,16 +48,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <!-- Menu limpo, sem a aba de Professores para acesso comum -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link fw-semibold" href="/alunos">Alunos</a></li>
                 <li class="nav-item"><a class="nav-link fw-semibold" href="/turmas/novo">Turmas</a></li>
                 <li class="nav-item"><a class="nav-link active fw-bold" href="/roteiros">Roteiros</a></li>
             </ul>
             <div class="d-flex align-items-center">
-                <!-- Nome dinâmico do professor -->
                 <span class="text-white fw-semibold me-3 d-none d-lg-block" th:text="'Olá, ' + ${#authentication.name}">Olá, Professor</span>
-                <!-- Botão de Sair Seguro -->
                 <form th:action="@{/logout}" method="post" class="m-0">
                     <button type="submit" class="btn btn-outline-light btn-sm fw-bold px-3">Sair</button>
                 </form>
@@ -77,7 +73,6 @@
             </div>
 
             <div class="card shadow-sm border-0 rounded-3 mt-4">
-                <!-- Header do Card na cor do sistema -->
                 <div class="card-header bg-labguide py-3 rounded-top-3">
                     <h4 class="mb-0 fw-bold text-white">📝 Criar Novo Roteiro</h4>
                 </div>
@@ -108,6 +103,22 @@
                                       placeholder="Descreva brevemente o objetivo deste experimento..." required></textarea>
                         </div>
 
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="problematizacao" class="form-label fw-bold text-danger">❓ Problematização Inicial</label>
+                                <textarea class="form-control bg-light border-0 shadow-sm text-dark border-start border-danger border-4"
+                                          id="problematizacao" th:field="*{problematizacao}" rows="3"
+                                          placeholder="Pergunta que desafia o aluno (Ex: O que acontece se misturarmos X e Y?)" required></textarea>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="materiais" class="form-label fw-bold text-warning text-dark">🧫 Materiais e Reagentes</label>
+                                <textarea class="form-control bg-light border-0 shadow-sm text-dark border-start border-warning border-4"
+                                          id="materiais" th:field="*{materiais}" rows="3"
+                                          placeholder="Liste as vidrarias e compostos (Ex: 1x Béquer 50ml, 5g NaCl...)" required></textarea>
+                            </div>
+                        </div>
+
                         <hr class="text-muted mt-5 mb-4">
 
                         <div class="d-flex justify-content-end gap-3">
@@ -124,7 +135,6 @@
     </div>
 </div>
 
-<!-- RODAPÉ COMPLETO -->
 <footer class="text-light py-4 mt-auto" style="background-color: #2c2c2c;">
     <div class="container">
         <div class="row">

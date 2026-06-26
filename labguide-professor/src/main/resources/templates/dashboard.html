@@ -1,85 +1,729 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - LabGuide</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
-        body { background-color: #f8f9fa; }
-        .card-resumo { border-left: 5px solid #2B5D70; border-radius: 8px; }
-        .grafico-container { max-width: 400px; margin: 0 auto; }
+        :root {
+            --labguide-primary: #2B5D70;
+            --labguide-dark: #1f4351;
+            --labguide-light: #eef7f9;
+            --labguide-green: #198754;
+            --labguide-warning: #ffc107;
+            --labguide-danger: #dc3545;
+            --labguide-blue-soft: #dbeff5;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                    radial-gradient(circle at top left, rgba(43, 93, 112, 0.20), transparent 34%),
+                    radial-gradient(circle at top right, rgba(25, 135, 84, 0.14), transparent 28%),
+                    linear-gradient(135deg, #f7fafb 0%, #edf5f7 100%);
+            font-family: Arial, Helvetica, sans-serif;
+            color: #1f2933;
+        }
+
+        /* ===============================
+           NAVBAR
+           =============================== */
+
+        .navbar-labguide {
+            background: linear-gradient(135deg, var(--labguide-primary), var(--labguide-dark));
+            box-shadow: 0 10px 28px rgba(31, 67, 81, 0.28);
+            min-height: 68px;
+        }
+
+        .navbar-labguide .navbar-brand {
+            font-size: 1.45rem;
+            letter-spacing: -0.4px;
+        }
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.14);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            border: 1px solid rgba(255,255,255,0.24);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.20);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-nav-clean {
+            border-radius: 14px;
+            padding: 9px 18px;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .btn-nav-light {
+            background: rgba(255, 255, 255, 0.95);
+            color: #1f2933;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+        }
+
+        .btn-nav-light:hover {
+            background: #ffffff;
+            color: #1f2933;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+        }
+
+        .btn-nav-outline {
+            color: white;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.45);
+        }
+
+        .btn-nav-outline:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ===============================
+           HEADER DO DASHBOARD
+           =============================== */
+
+        .dashboard-header {
+            margin-top: 30px;
+            border-radius: 28px;
+            padding: 34px 38px;
+            color: white;
+            background:
+                    radial-gradient(circle at 88% 12%, rgba(255, 255, 255, 0.18), transparent 22%),
+                    radial-gradient(circle at 100% 100%, rgba(25, 135, 84, 0.22), transparent 28%),
+                    linear-gradient(135deg, #2B5D70 0%, #244f60 48%, #1f4351 100%);
+            box-shadow:
+                    0 24px 48px rgba(31, 67, 81, 0.30),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-header::before {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.10);
+            top: -90px;
+            right: -70px;
+        }
+
+        .dashboard-header::after {
+            content: "";
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border-radius: 40px;
+            background: rgba(255,255,255,0.08);
+            right: 40px;
+            bottom: -70px;
+            transform: rotate(22deg);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .small-label {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.13);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .dashboard-title {
+            font-size: clamp(1.65rem, 3vw, 2.25rem);
+            font-weight: 900;
+            letter-spacing: -0.6px;
+            margin-bottom: 4px;
+        }
+
+        .dashboard-subtitle {
+            max-width: 720px;
+            font-size: 1.02rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.84);
+            margin-bottom: 0;
+        }
+
+        .btn-dashboard {
+            border-radius: 16px;
+            font-weight: 800;
+            padding: 13px 22px;
+            min-width: 170px;
+            border: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-dashboard-primary {
+            background: rgba(255, 255, 255, 0.96);
+            color: #1f2933;
+            box-shadow:
+                    0 14px 24px rgba(0, 0, 0, 0.20),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        .btn-dashboard-primary:hover {
+            background: #ffffff;
+            color: #1f2933;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 32px rgba(0, 0, 0, 0.28);
+        }
+
+        .btn-dashboard-warning {
+            background: linear-gradient(135deg, #ffc107, #ffb000);
+            color: #1f2933;
+            box-shadow:
+                    0 14px 24px rgba(255, 193, 7, 0.28),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
+        .btn-dashboard-warning:hover {
+            color: #1f2933;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 32px rgba(255, 193, 7, 0.40);
+        }
+
+        /* ===============================
+           CARDS PRINCIPAIS
+           =============================== */
+
+        .metric-card {
+            border: none;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.86);
+            backdrop-filter: blur(12px);
+            box-shadow:
+                    0 18px 34px rgba(43, 93, 112, 0.14),
+                    inset 0 1px 0 rgba(255,255,255,0.9);
+            transition: all 0.25s ease;
+            overflow: hidden;
+            position: relative;
+            min-height: 178px;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 28px 46px rgba(43, 93, 112, 0.22);
+        }
+
+        .metric-card::after {
+            content: "";
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            top: -55px;
+            right: -45px;
+            opacity: 0.13;
+        }
+
+        .metric-card.primary::after {
+            background: var(--labguide-primary);
+        }
+
+        .metric-card.warning::after {
+            background: var(--labguide-warning);
+        }
+
+        .metric-card.success::after {
+            background: var(--labguide-green);
+        }
+
+        .metric-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            color: white;
+            box-shadow: 0 10px 18px rgba(0,0,0,0.18);
+        }
+
+        .metric-icon.primary {
+            background: linear-gradient(135deg, var(--labguide-primary), #3f8aa3);
+        }
+
+        .metric-icon.warning {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+        }
+
+        .metric-icon.success {
+            background: linear-gradient(135deg, #198754, #20c997);
+        }
+
+        .metric-label {
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08rem;
+            color: #6c757d;
+            text-transform: uppercase;
+        }
+
+        .metric-number {
+            font-size: 2.7rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #1f2933;
+        }
+
+        .metric-text {
+            color: #6c757d;
+            font-size: 0.92rem;
+        }
+
+        /* ===============================
+           PAINÉIS
+           =============================== */
+
+        .panel-card {
+            border: none;
+            border-radius: 26px;
+            background: rgba(255,255,255,0.92);
+            box-shadow: 0 18px 34px rgba(43, 93, 112, 0.13);
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 22px 24px;
+            background: linear-gradient(135deg, #ffffff, #f2f8fa);
+            border-bottom: 1px solid rgba(43, 93, 112, 0.10);
+        }
+
+        .panel-title {
+            font-weight: 800;
+            margin: 0;
+            color: #1f2933;
+        }
+
+        .panel-subtitle {
+            margin: 4px 0 0;
+            color: #6c757d;
+            font-size: 0.94rem;
+        }
+
+        .chart-area {
+            max-width: 410px;
+            margin: 0 auto;
+            padding: 25px 18px 10px;
+        }
+
+        .status-box {
+            border-radius: 22px;
+            padding: 18px;
+            background: linear-gradient(135deg, #eef7f9, #ffffff);
+            border: 1px solid rgba(43, 93, 112, 0.10);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .progress-labguide {
+            height: 13px;
+            border-radius: 999px;
+            background-color: #e9ecef;
+            overflow: hidden;
+        }
+
+        .progress-labguide .progress-bar {
+            background: linear-gradient(90deg, var(--labguide-primary), #20c997);
+            border-radius: 999px;
+        }
+
+        .dashboard-list-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 16px 0;
+            border-bottom: 1px solid #edf1f3;
+        }
+
+        .dashboard-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+            font-size: 1.25rem;
+            box-shadow: 0 10px 18px rgba(0,0,0,0.13);
+        }
+
+        .list-icon.primary {
+            background: linear-gradient(135deg, var(--labguide-primary), #3f8aa3);
+        }
+
+        .list-icon.success {
+            background: linear-gradient(135deg, #198754, #20c997);
+        }
+
+        .list-icon.warning {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+        }
+
+        .feature-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border-radius: 999px;
+            padding: 8px 13px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            background: #eef7f9;
+            color: var(--labguide-primary);
+            border: 1px solid rgba(43, 93, 112, 0.12);
+        }
+
+        .mini-card {
+            border-radius: 20px;
+            border: 1px solid rgba(43, 93, 112, 0.10);
+            background: linear-gradient(135deg, #ffffff, #f5fbfc);
+            padding: 18px;
+            height: 100%;
+            box-shadow: 0 12px 24px rgba(43, 93, 112, 0.08);
+        }
+
+        /* ===============================
+           RESPONSIVIDADE
+           =============================== */
+
+        @media (max-width: 768px) {
+            .navbar-labguide {
+                min-height: auto;
+                padding: 14px 0;
+            }
+
+            .navbar-labguide .container {
+                flex-direction: column;
+                align-items: stretch !important;
+                gap: 14px;
+            }
+
+            .navbar-labguide .navbar-brand {
+                text-align: center;
+                font-size: 1.35rem;
+            }
+
+            .nav-actions {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .btn-nav-clean {
+                flex: 1;
+                text-align: center;
+                padding: 10px 12px;
+            }
+
+            .dashboard-header {
+                margin-top: 22px;
+                padding: 26px 22px;
+                border-radius: 24px;
+            }
+
+            .small-label {
+                font-size: 0.8rem;
+            }
+
+            .dashboard-title {
+                font-size: 1.65rem;
+            }
+
+            .dashboard-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .dashboard-header .d-flex {
+                width: 100%;
+            }
+
+            .btn-dashboard {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .metric-card {
+                min-height: auto;
+            }
+        }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark shadow-sm mb-4" style="background-color: #2B5D70;">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-labguide">
     <div class="container">
-        <a class="navbar-brand fw-bold" th:href="@{/}">🧪 LabGuide</a>
+        <a class="navbar-brand fw-bold d-flex align-items-center justify-content-center" th:href="@{/}">
+            <span class="brand-mark">🧪</span>
+            LabGuide
+        </a>
 
-        <div class="d-flex align-items-center">
-            <a th:href="@{/roteiros}" class="btn btn-light btn-sm text-dark fw-bold me-3 shadow-sm">Meus Roteiros</a>
+        <div class="nav-actions">
+
 
             <form th:action="@{/logout}" method="post" class="m-0">
-                <button type="submit" class="btn btn-outline-light btn-sm fw-bold">Sair</button>
+                <button type="submit" class="btn btn-nav-clean btn-nav-outline">
+                    Sair
+                </button>
             </form>
         </div>
     </div>
 </nav>
 
-<div class="container mt-4">
-    <!-- Saudação Dinâmica e Moderna -->
-    <div class="mb-4">
-        <h2 class="fw-bold text-dark mb-1">
-            Bem-vindo(a) de volta, <span class="text-success" th:text="${#authentication.name}">Professor</span>! 👋
-        </h2>
-        <p class="text-muted fs-5">Aqui está o panorama atual do seu laboratório.</p>
-    </div>
+<main class="container pb-5">
 
-    <div class="row mb-5">
-        <div class="col-md-4">
-            <div class="card card-resumo shadow-sm">
-                <div class="card-body">
-                    <h6 class="text-muted text-uppercase mb-1">Total de Roteiros</h6>
-                    <h2 class="mb-0 fw-bold" th:text="${totalRoteiros}">0</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-resumo shadow-sm" style="border-left-color: #ffc107;">
-                <div class="card-body">
-                    <h6 class="text-muted text-uppercase mb-1">Turmas Ativas</h6>
-                    <h2 class="mb-0 fw-bold" th:text="${totalTurmas}">0</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-resumo shadow-sm" style="border-left-color: #198754;">
-                <div class="card-body">
-                    <h6 class="text-muted text-uppercase mb-1">Alunos Cadastrados</h6>
-                    <h2 class="mb-0 fw-bold" th:text="${totalAlunos}">0</h2>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- CABEÇALHO COMPACTO -->
+    <section class="dashboard-header mb-4">
+        <div class="header-content">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <div class="small-label">
+                        Dashboard do Professor
+                    </div>
 
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="card shadow-sm">
-                <div class="card-header bg-white fw-bold">
-                    Engajamento Recente (Responderam vs Pendentes)
+                    <h1 class="dashboard-title">
+                        Olá, <span th:text="${#authentication.name}">Professor</span>!
+                    </h1>
+
+                    <p class="dashboard-subtitle">
+                        Acompanhe roteiros, turmas, respostas e indicadores das atividades experimentais em um painel centralizado.
+                    </p>
                 </div>
-                <div class="card-body grafico-container">
-                    <canvas id="graficoEngajamento"></canvas>
+
+                <div class="col-lg-4">
+                    <div class="d-flex flex-wrap justify-content-lg-end gap-3">
+                        <a th:href="@{/roteiros}" class="btn btn-dashboard btn-dashboard-primary">
+                            Gerenciar Roteiros
+                        </a>
+
+                        <a th:href="@{/roteiros/novo}" class="btn btn-dashboard btn-dashboard-warning">
+                            Novo Roteiro
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+
+    <!-- CARDS PRINCIPAIS -->
+    <section class="row g-4 mb-4">
+        <div class="col-12 col-md-4">
+            <div class="card metric-card primary h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="metric-label">Total de Roteiros</div>
+                            <div class="metric-number mt-2" th:text="${totalRoteiros}">0</div>
+                        </div>
+                        <div class="metric-icon primary">📘</div>
+                    </div>
+                    <p class="metric-text mt-3 mb-0">
+                        Materiais experimentais cadastrados para aplicação nas turmas.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card metric-card warning h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="metric-label">Turmas Ativas</div>
+                            <div class="metric-number mt-2" th:text="${totalTurmas}">0</div>
+                        </div>
+                        <div class="metric-icon warning">🏫</div>
+                    </div>
+                    <p class="metric-text mt-3 mb-0">
+                        Turmas disponíveis para acompanhamento das práticas.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card metric-card success h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="metric-label">Alunos Cadastrados</div>
+                            <div class="metric-number mt-2" th:text="${totalAlunos}">0</div>
+                        </div>
+                        <div class="metric-icon success">👨‍🎓</div>
+                    </div>
+                    <p class="metric-text mt-3 mb-0">
+                        Estudantes vinculados às turmas do professor.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAINEL PRINCIPAL DO DASHBOARD -->
+    <section class="row g-4 mb-4">
+
+        <div class="col-12 col-lg-7">
+            <div class="panel-card h-100">
+                <div class="panel-header">
+                    <h5 class="panel-title">Engajamento das Atividades</h5>
+                    <p class="panel-subtitle">
+                        Visualização geral das respostas enviadas e pendências recentes.
+                    </p>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="graficoEngajamento"></canvas>
+                    </div>
+
+                    <div class="px-4 pb-4">
+                        <div class="status-box">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <div class="fw-bold">Progresso geral das atividades</div>
+                                    <small class="text-muted">Baseado nos envios recentes dos estudantes.</small>
+                                </div>
+                                <span class="fw-bold fs-5" style="color: #2B5D70;">70%</span>
+                            </div>
+
+                            <div class="progress-labguide mt-3">
+                                <div class="progress-bar" role="progressbar" style="width: 70%;"></div>
+                            </div>
+
+                            <div class="d-flex flex-wrap gap-2 mt-3">
+                                <span class="feature-chip">12 responderam</span>
+                                <span class="feature-chip">5 pendentes</span>
+                                <span class="feature-chip">Acompanhamento ativo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAINEL LATERAL -->
+        <div class="col-12 col-lg-5">
+            <div class="panel-card h-100">
+                <div class="panel-header">
+                    <h5 class="panel-title">Resumo Operacional</h5>
+                    <p class="panel-subtitle">
+                        Pontos importantes para o acompanhamento docente.
+                    </p>
+                </div>
+
+                <div class="card-body px-4">
+                    <div class="dashboard-list-item">
+                        <div class="list-icon primary">📋</div>
+                        <div>
+                            <div class="fw-bold">Roteiros em organização</div>
+                            <small class="text-muted">
+                                Crie, revise e publique roteiros experimentais para suas turmas.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-list-item">
+                        <div class="list-icon success">✅</div>
+                        <div>
+                            <div class="fw-bold">Respostas dos estudantes</div>
+                            <small class="text-muted">
+                                Acompanhe registros textuais e evidências enviadas durante as práticas.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-list-item">
+                        <div class="list-icon warning">⚠️</div>
+                        <div>
+                            <div class="fw-bold">Pendências e progresso</div>
+                            <small class="text-muted">
+                                Identifique etapas não concluídas e apoie a mediação pedagógica.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 rounded-4" style="background: #eef7f9;">
+                        <div class="fw-bold mb-1" style="color: #2B5D70;">
+                            Apoio à mediação
+                        </div>
+                        <small class="text-muted">
+                            O painel foi pensado para reduzir o esforço administrativo e facilitar o acompanhamento
+                            das atividades experimentais em tempo real.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- CARDS SECUNDÁRIOS -->
+    <section class="row g-4">
+        <div class="col-12 col-md-4">
+            <div class="mini-card">
+                <h6 class="fw-bold mb-2">Navegação clara</h6>
+                <small class="text-muted">
+                    Acesso rápido às principais ações do professor dentro da plataforma.
+                </small>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="mini-card">
+                <h6 class="fw-bold mb-2">Experimentação investigativa</h6>
+                <small class="text-muted">
+                    Organização dos roteiros para apoiar a condução das práticas de Química.
+                </small>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="mini-card">
+                <h6 class="fw-bold mb-2">Acompanhamento docente</h6>
+                <small class="text-muted">
+                    Indicadores visuais para apoiar decisões durante e após as atividades.
+                </small>
+            </div>
+        </div>
+    </section>
+
+</main>
 
 <script>
     const ctx = document.getElementById('graficoEngajamento');
+
     new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -87,12 +731,30 @@
             datasets: [{
                 data: [12, 5],
                 backgroundColor: ['#198754', '#dc3545'],
-                hoverOffset: 4
+                borderColor: '#ffffff',
+                borderWidth: 5,
+                hoverOffset: 12
             }]
         },
-        options: { responsive: true }
+        options: {
+            responsive: true,
+            cutout: '68%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        usePointStyle: true,
+                        padding: 18,
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                }
+            }
+        }
     });
 </script>
 
 </body>
 </html>
+```

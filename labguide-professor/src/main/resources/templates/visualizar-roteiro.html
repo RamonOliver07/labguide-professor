@@ -10,36 +10,36 @@
            NOVA PALETA DE CORES DO SISTEMA (PROTÓTIPO)
            ========================================== */
         :root {
-            --labguide-primary: #2B5D70; /* Cor principal cravada! */
-            --labguide-dark: #1f4351;    /* Tom mais escuro para o hover do botão */
+            --labguide-primary: #2B5D70;
+            --labguide-dark: #1f4351;
         }
 
         html, body { height: 100%; margin: 0; }
-        body { background-color: #f8f9fa; display: flex; flex-direction: column; min-height: 100vh; }
+        body { background-color: #e9ecef; display: flex; flex-direction: column; min-height: 100vh; }
         .main-content { flex: 1; }
 
-        /* Classes padronizadas usando a variável de cor */
         .bg-labguide { background-color: var(--labguide-primary) !important; }
         .text-labguide { color: var(--labguide-primary) !important; }
 
-        .btn-labguide {
-            background-color: var(--labguide-primary);
-            color: white;
-            border: none;
-        }
-        .btn-labguide:hover {
-            background-color: var(--labguide-dark);
-            color: white;
-        }
+        .btn-labguide { background-color: var(--labguide-primary); color: white; border: none; }
+        .btn-labguide:hover { background-color: var(--labguide-dark); color: white; }
+        .btn-custom { background-color: var(--labguide-primary); color: white; }
 
-        /* Estilização suave para os campos de texto */
         .form-control:focus, .form-select:focus {
             border-color: var(--labguide-primary);
             box-shadow: 0 0 0 0.25rem rgba(43, 93, 112, 0.25);
         }
+
+        /* Títulos de Seção para separar os blocos */
+        .section-title {
+            border-bottom: 2px solid var(--labguide-primary);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
     </style>
 </head>
-<body class="bg-light">
+<body>
 
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm mb-4 bg-labguide">
     <div class="container">
@@ -48,16 +48,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <!-- Menu limpo, sem a aba de Professores para acesso comum -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link fw-semibold" href="/alunos">Alunos</a></li>
                 <li class="nav-item"><a class="nav-link fw-semibold" href="/turmas/novo">Turmas</a></li>
                 <li class="nav-item"><a class="nav-link active fw-bold" href="/roteiros">Roteiros</a></li>
             </ul>
             <div class="d-flex align-items-center">
-                <!-- Nome dinâmico do professor -->
                 <span class="text-white fw-semibold me-3 d-none d-lg-block" th:text="'Olá, ' + ${#authentication.name}">Olá, Professor</span>
-                <!-- Botão de Sair Seguro -->
                 <form th:action="@{/logout}" method="post" class="m-0">
                     <button type="submit" class="btn btn-outline-light btn-sm fw-bold px-3">Sair</button>
                 </form>
@@ -66,179 +63,172 @@
     </div>
 </nav>
 
-
 <div class="container main-content mb-5">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
 
-            <div class="card shadow-sm border-0 rounded-3 mb-4">
-                <div class="card-body p-5">
+    <div class="card shadow-sm border-0 rounded-3 mb-4">
+        <div class="card-body p-4">
+            <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-3">
+                <div>
+                    <span class="badge btn-custom px-3 py-2 rounded-pill mb-2" th:text="${roteiro.turma.nome}">Turma</span>
+                    <span th:if="${roteiro.status == 'RASCUNHO'}" class="badge bg-warning text-dark px-3 py-2 rounded-pill mb-2 ms-1 fw-bold">Em Rascunho</span>
+                    <span th:if="${roteiro.status == 'PUBLICADO'}" class="badge bg-success text-white px-3 py-2 rounded-pill mb-2 ms-1 fw-bold">🚀 Publicado</span>
+                    <h2 class="fw-bold text-dark mt-1 mb-0" th:text="${roteiro.titulo}">Nome do Roteiro</h2>
+                </div>
 
-                    <div class="pb-3 mb-4 border-bottom d-flex justify-content-between align-items-start">
-                        <div>
-                            <span class="badge btn-custom px-3 py-2 rounded-pill mb-2" th:text="${roteiro.turma.nome}">Turma</span>
-
-                            <span th:if="${roteiro.status == 'RASCUNHO'}" class="badge bg-warning text-dark px-3 py-2 rounded-pill mb-2 ms-1 fw-bold">Em Rascunho</span>
-                            <span th:if="${roteiro.status == 'PUBLICADO'}" class="badge bg-success text-white px-3 py-2 rounded-pill mb-2 ms-1 fw-bold">🚀 Publicado para Alunos</span>
-
-                            <h2 class="fw-bold text-dark" th:text="${roteiro.titulo}">Nome do Roteiro</h2>
-                        </div>
-
-                        <div th:if="${roteiro.status == 'RASCUNHO'}">
-                            <form th:action="@{/roteiros/visualizar/{id}/publicar(id=${roteiro.id})}" method="POST" onsubmit="return confirm('Deseja publicar este roteiro? Após a publicação, os alunos poderão responder o experimento.');">
-                                <button type="submit" class="btn btn-success fw-bold px-4 py-2 shadow-sm">
-                                    🚀 Publicar Roteiro
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <h5 class="fw-bold text-secondary mb-3">Contextualização do Experimento</h5>
-                    <p class="text-muted lh-lg fs-5 mb-0" style="white-space: pre-line;" th:text="${roteiro.descricao}">Descrição...</p>
-
-                    <div class="mt-4 pt-3 d-flex flex-wrap gap-2">
-                        <a th:href="@{/roteiros/editar/{id}(id=${roteiro.id})}" class="btn btn-warning fw-bold px-4 text-dark shadow-sm">
-                            ✏️ Editar Cabeçalho
-                        </a>
-
-                        <form th:action="@{/roteiros/visualizar/{id}/duplicar(id=${roteiro.id})}" method="POST" onsubmit="return confirm('Deseja criar uma cópia exata deste roteiro e de todos os seus passos?');">
-                            <button type="submit" class="btn btn-info fw-bold px-4 text-dark shadow-sm">
-                                📋 Duplicar Roteiro
-                            </button>
-                        </form>
-
-                        <a th:href="@{/roteiros/visualizar/{id}/respostas(id=${roteiro.id})}" class="btn btn-success fw-bold px-4 shadow-sm">
-                            📊 Ver Respostas
-                        </a>
-
-                        <form th:action="@{/roteiros/visualizar/{id}/excluir(id=${roteiro.id})}" method="POST" onsubmit="return confirm('Tem certeza ABSOLUTA que deseja apagar este roteiro? Todos os passos dele serão perdidos permanentemente!');">
-                            <button type="submit" class="btn btn-danger fw-bold px-4 shadow-sm">
-                                🗑️ Excluir Roteiro
-                            </button>
-                        </form>
-
-                        <a href="/roteiros" class="btn btn-light fw-semibold px-4 border">
-                            Voltar para Lista
-                        </a>
-
-
-                    </div>
-
+                <div th:if="${roteiro.status == 'RASCUNHO'}">
+                    <form th:action="@{/roteiros/visualizar/{id}/publicar(id=${roteiro.id})}" method="POST" class="m-0" onsubmit="return confirm('Deseja publicar este roteiro?');">
+                        <button type="submit" class="btn btn-success fw-bold px-4 py-2 shadow-sm">🚀 Publicar Roteiro</button>
+                    </form>
                 </div>
             </div>
 
-            <div class="card shadow-sm border-0 rounded-3">
-                <div class="card-body p-5">
-                    <h4 class="fw-bold text-dark mb-4">Procedimento Experimental (Passos)</h4>
+            <div class="d-flex flex-wrap gap-2 pt-3 border-top">
+                <a th:href="@{/roteiros/editar/{id}(id=${roteiro.id})}" class="btn btn-warning btn-sm fw-bold px-3 text-dark shadow-sm">✏️ Editar Cabeçalho</a>
+                <form th:action="@{/roteiros/visualizar/{id}/duplicar(id=${roteiro.id})}" method="POST" class="m-0" onsubmit="return confirm('Deseja duplicar este roteiro?');">
+                    <button type="submit" class="btn btn-info btn-sm fw-bold px-3 text-dark shadow-sm">📋 Duplicar</button>
+                </form>
+                <a th:href="@{/roteiros/visualizar/{id}/respostas(id=${roteiro.id})}" class="btn btn-success btn-sm fw-bold px-3 shadow-sm">📊 Ver Respostas</a>
+                <form th:action="@{/roteiros/visualizar/{id}/excluir(id=${roteiro.id})}" method="POST" class="m-0" onsubmit="return confirm('Tem certeza ABSOLUTA que deseja apagar?');">
+                    <button type="submit" class="btn btn-danger btn-sm fw-bold px-3 shadow-sm">🗑️ Excluir</button>
+                </form>
+                <a href="/roteiros" class="btn btn-light btn-sm fw-semibold px-3 border ms-auto">Voltar</a>
+            </div>
+        </div>
+    </div>
 
-                    <div class="mb-5">
-                        <div th:if="${#lists.isEmpty(roteiro.passos)}" class="text-muted border rounded p-4 bg-white text-center">
-                            Nenhum passo cadastrado para este experimento ainda. Use o formulário abaixo para começar!
-                        </div>
+    <div class="card shadow-sm border-0 mb-4 rounded-3">
+        <div class="card-body p-4">
+            <h5 class="section-title text-labguide">1. Base Teórica e Investigativa</h5>
 
-                        <div class="list-group gap-3" th:unless="${#lists.isEmpty(roteiro.passos)}">
-                            <div th:each="p : ${roteiro.passos}" class="list-group-item d-flex align-items-center justify-content-between border rounded-3 p-3 shadow-sm bg-white">
-                                <div class="d-flex align-items-start flex-grow-1">
-                                    <div class="badge btn-custom rounded-circle d-flex align-items-center justify-content-center me-3"
-                                         style="width: 35px; height: 35px; font-size: 1.1rem; font-weight: bold;"
-                                         th:text="${p.numero}">1</div>
-                                    <div class="flex-grow-1">
-                                        <span th:if="${p.tipoEntrada == 'TEXTO'}" class="badge bg-secondary text-white mb-1 small fw-semibold">Resposta em Texto</span>
-                                        <span th:if="${p.tipoEntrada == 'NUMERO'}" class="badge bg-primary text-white mb-1 small fw-semibold">Medição Numérica</span>
-                                        <span th:if="${p.tipoEntrada == 'FOTO'}" class="badge bg-info text-dark mb-1 small fw-semibold">Upload de Foto</span>
+            <div class="mb-4">
+                <label class="form-label fw-bold text-secondary mb-0">Contextualização Química</label>
+                <p class="text-dark bg-light p-3 rounded border mb-0 fs-6" style="white-space: pre-line;" th:text="${roteiro.descricao}">Descrição...</p>
+            </div>
 
-                                        <p class="text-dark m-0 lh-base fs-5" style="white-space: pre-line;" th:text="${p.descricao}">Descrição do passo físico ou químico.</p>
-                                    </div>
-                                </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label class="form-label fw-bold text-danger">❓ Problematização Inicial</label>
+                    <div class="p-3 rounded-3 border bg-white h-100 border-start border-danger border-4 shadow-sm">
+                        <p class="text-dark mb-0 fs-6" style="white-space: pre-line;" th:text="${roteiro.problematizacao}">Nenhuma problematização.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-bold text-warning text-dark">🧫 Materiais e Reagentes</label>
+                    <div class="p-3 rounded-3 border bg-white h-100 border-start border-warning border-4 shadow-sm">
+                        <p class="text-dark mb-0 fs-6" style="white-space: pre-line;" th:text="${roteiro.materiais}">Nenhum material listado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                                <div class="d-flex gap-2 ms-3">
-                                    <button type="button" class="btn btn-sm btn-outline-warning fw-semibold"
-                                            data-bs-toggle="modal" th:data-bs-target="'#modalEditar' + ${p.id}">
-                                        Editar
-                                    </button>
+    <div class="row g-4">
 
-                                    <form th:action="@{/roteiros/visualizar/{rId}/excluir-passo/{pId}(rId=${roteiro.id}, pId=${p.id})}" method="POST" onsubmit="return confirm('Tem certeza que deseja apagar esta etapa do experimento?');">
-                                        <button type="submit" class="btn btn-sm btn-outline-danger fw-semibold">Excluir</button>
-                                    </form>
-                                </div>
+        <div class="col-lg-7">
+            <div class="card shadow-sm border-0 h-100 rounded-3">
+                <div class="card-body p-4">
+                    <h5 class="section-title text-labguide">2. Procedimento Prático (Passos)</h5>
 
-                                <div class="modal fade" th:id="'modalEditar' + ${p.id}" tabindex="-1" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-light">
-                                                <h5 class="modal-title fw-bold text-dark">Editar Etapa do Experimento</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <form th:action="@{/roteiros/visualizar/{rId}/editar-passo/{pId}(rId=${roteiro.id}, pId=${p.id})}" method="POST">
-                                                <div class="modal-body p-4">
-                                                    <div class="row g-3">
-                                                        <div class="col-sm-3">
-                                                            <label class="form-label small fw-semibold text-muted">Ordem/Nº</label>
-                                                            <input type="number" class="form-control text-dark fw-bold text-center" name="numero" th:value="${p.numero}" required>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="form-label small fw-semibold text-muted">Retorno do Aluno</label>
-                                                            <select class="form-select text-dark fw-semibold" name="tipoEntrada" required>
-                                                                <option value="TEXTO" th:selected="${p.tipoEntrada == 'TEXTO'}">Texto / Observação</option>
-                                                                <option value="NUMERO" th:selected="${p.tipoEntrada == 'NUMERO'}">Número (pH, Peso, etc)</option>
-                                                                <option value="FOTO" th:selected="${p.tipoEntrada == 'FOTO'}">Foto do Experimento</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-sm-12">
-                                                            <label class="form-label small fw-semibold text-muted">Instrução Atualizada</label>
-                                                            <textarea class="form-control text-dark" name="descricao" rows="3" th:text="${p.descricao}" required></textarea>
-                                                        </div>
+                    <div th:if="${#lists.isEmpty(roteiro.passos)}" class="text-muted border rounded p-4 bg-light text-center fst-italic">
+                        Nenhum passo cadastrado. Adicione ao lado! 👉
+                    </div>
+
+                    <div class="list-group gap-2" th:unless="${#lists.isEmpty(roteiro.passos)}">
+                        <div th:each="p : ${roteiro.passos}" class="list-group-item d-flex align-items-start border rounded p-3 shadow-sm bg-white">
+
+                            <div class="badge btn-custom rounded-circle d-flex align-items-center justify-content-center me-3 mt-1 flex-shrink-0"
+                                 style="width: 32px; height: 32px; font-size: 1rem;" th:text="${p.numero}">1</div>
+
+                            <div class="flex-grow-1">
+                                <span th:if="${p.tipoEntrada == 'TEXTO'}" class="badge bg-secondary mb-1">📝 Texto</span>
+                                <span th:if="${p.tipoEntrada == 'NUMERO'}" class="badge bg-primary mb-1">🔢 Número</span>
+                                <span th:if="${p.tipoEntrada == 'FOTO'}" class="badge bg-info text-dark mb-1">📸 Foto</span>
+                                <p class="text-dark m-0 fs-6" style="white-space: pre-line;" th:text="${p.descricao}">Instrução do passo</p>
+                            </div>
+
+                            <div class="d-flex flex-column gap-1 ms-2 flex-shrink-0">
+                                <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" th:data-bs-target="'#modalEditar' + ${p.id}">✏️</button>
+                                <form th:action="@{/roteiros/visualizar/{rId}/excluir-passo/{pId}(rId=${roteiro.id}, pId=${p.id})}" method="POST" class="m-0" onsubmit="return confirm('Apagar etapa?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger w-100">🗑️</button>
+                                </form>
+                            </div>
+
+                            <div class="modal fade" th:id="'modalEditar' + ${p.id}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-light">
+                                            <h5 class="modal-title fw-bold text-dark">Editar Etapa</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <form th:action="@{/roteiros/visualizar/{rId}/editar-passo/{pId}(rId=${roteiro.id}, pId=${p.id})}" method="POST">
+                                            <div class="modal-body p-3">
+                                                <div class="row g-2">
+                                                    <div class="col-4">
+                                                        <label class="form-label small fw-bold">Nº</label>
+                                                        <input type="number" class="form-control text-center" name="numero" th:value="${p.numero}" required>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <label class="form-label small fw-bold">Tipo de Retorno</label>
+                                                        <select class="form-select" name="tipoEntrada" required>
+                                                            <option value="TEXTO" th:selected="${p.tipoEntrada == 'TEXTO'}">Texto / Observação</option>
+                                                            <option value="NUMERO" th:selected="${p.tipoEntrada == 'NUMERO'}">Número</option>
+                                                            <option value="FOTO" th:selected="${p.tipoEntrada == 'FOTO'}">Foto</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-12 mt-2">
+                                                        <label class="form-label small fw-bold">Instrução</label>
+                                                        <textarea class="form-control" name="descricao" rows="3" th:text="${p.descricao}" required></textarea>
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer bg-light">
-                                                    <button type="button" class="btn btn-light border fw-semibold" data-bs-dismiss="modal">Cancelar</button>
-                                                    <button type="submit" class="btn btn-custom fw-bold">Salvar Alterações</button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                            </div>
+                                            <div class="modal-footer bg-light p-2">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-sm btn-custom">Salvar</button>
+                                            </div>
+                                        </form>
                                     </div>
-                                </div> </div>
-                        </div> </div>
-
-                    <div class="bg-white p-4 rounded-3 border">
-                        <h5 class="fw-bold text-secondary mb-3">Adicionar Nova Etapa</h5>
-                        <form th:action="@{/roteiros/visualizar/{id}/adicionar-passo(id=${roteiro.id})}" method="POST">
-                            <div class="row g-3">
-                                <div class="col-sm-3 col-md-2">
-                                    <label for="numero" class="form-label small fw-semibold text-muted">Ordem/Nº</label>
-                                    <input type="number" class="form-control text-dark fw-bold text-center" id="numero" name="numero"
-                                           th:value="${#lists.size(roteiro.passos) + 1}" required>
                                 </div>
-                                <div class="col-sm-5 col-md-4">
-                                    <label for="tipoEntrada" class="form-label small fw-semibold text-muted">O que o aluno deve enviar?</label>
-                                    <select class="form-select text-dark fw-semibold" id="tipoEntrada" name="tipoEntrada" required>
-                                        <option value="TEXTO" selected>Texto / Observação Descritiva</option>
-                                        <option value="NUMERO">Número (Massa, Volume, pH...)</option>
-                                        <option value="FOTO">Foto comprobatória da etapa</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-12">
-                                    <label for="descricao" class="form-label small fw-semibold text-muted">Instrução / O que fazer?</label>
-                                    <textarea class="form-control text-dark" id="descricao" name="descricao" rows="2"
-                                              placeholder="Ex: Pese 5g de Cloreto de Sódio e anote o valor exato obtido..." required></textarea>
-                                </div>
-                            </div>
-                            <div class="text-end mt-3">
-                                <button type="submit" class="btn btn-custom fw-bold px-4">+ Inserir Passo no Roteiro</button>
-                            </div>
-                        </form>
+                            </div> </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
+
+        <div class="col-lg-5">
+            <div class="card shadow-sm border-0 border-start border-4 border-success h-100 rounded-3 bg-white">
+                <div class="card-body p-4">
+                    <h5 class="section-title text-success">3. Inserir Nova Etapa</h5>
+                    <p class="text-muted small mb-3">Defina a instrução e o que o aluno deve retornar.</p>
+
+                    <form th:action="@{/roteiros/visualizar/{id}/adicionar-passo(id=${roteiro.id})}" method="POST">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-dark">Ordem / Passo Nº</label>
+                            <input type="number" class="form-control text-center w-50" name="numero" th:value="${#lists.size(roteiro.passos) + 1}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-dark">Tipo de Resposta Esperada</label>
+                            <select class="form-select" name="tipoEntrada" required>
+                                <option value="TEXTO" selected>📝 Resposta de Texto</option>
+                                <option value="NUMERO">🔢 Valor Numérico</option>
+                                <option value="FOTO">📸 Upload de Foto/Evidência</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-dark">Instrução do Procedimento</label>
+                            <textarea class="form-control" name="descricao" rows="4" placeholder="Ex: Adicione 10ml da solução..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success fw-bold w-100 shadow-sm">+ Adicionar ao Roteiro</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
-<footer class="bg-dark text-white pt-4 pb-2 border-top border-secondary mt-auto">
-    <div class="container text-center">
-        <small class="text-white-50">© 2026 LabGuide - Instituto Federal de Goiás (IFG) - Campus Luziânia</small>
+<footer class="text-light py-4 mt-auto" style="background-color: #2c2c2c;">
+    <div class="container text-center small text-white-50">
+        &copy; 2026 LabGuide - Instituto Federal de Goiás (IFG)
     </div>
 </footer>
 

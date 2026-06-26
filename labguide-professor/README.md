@@ -1,276 +1,209 @@
-# 🔬 LabGuide — Módulo do Professor
+# 🔬 LabGuide - Módulo do Professor
 
-> Recurso Digital para Otimização da Experimentação no Ensino de Química.
+O **LabGuide** é uma plataforma educacional voltada ao apoio da **Experimentação Investigativa** em laboratórios de ensino. O projeto busca auxiliar professores na criação, organização e acompanhamento de roteiros experimentais, contribuindo para uma prática pedagógica mais estruturada, dinâmica e integrada ao uso de tecnologias educacionais.
 
-O **LabGuide** é uma plataforma educacional desenvolvida no IFG com o objetivo de apoiar práticas experimentais investigativas em laboratórios de ensino de química.
-
-Este módulo permite que professores criem roteiros experimentais digitais, organizem turmas, acompanhem respostas dos alunos e gerenciem atividades laboratoriais de forma dinâmica e integrada.
+Este repositório corresponde ao **Módulo do Professor**, responsável pela gestão de roteiros, passos experimentais, turmas e recursos relacionados à mediação docente durante atividades práticas.
 
 ---
 
-# 🚀 Status do Projeto
+## 🚀 Status do Projeto
 
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
-![Java](https://img.shields.io/badge/Java-21-orange)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
-![License](https://img.shields.io/badge/license-Academic-lightgrey)
+O sistema encontra-se em fase de **desenvolvimento de protótipo funcional**, com foco inicial no Módulo do Professor.
 
-✅ Integração completa entre Front-end, Back-end e Banco de Dados.
+### Status atual
 
-### 📌 Status Atual
-
-**Módulo de Gestão de Roteiros e Passos Funcional**
+✅ Módulo de Gestão de Roteiros e Passos funcional
+🛠️ Integração entre backend, banco de dados e frontend web em desenvolvimento contínuo
+📱 Integração com ambiente mobile do aluno prevista como etapa futura
+📄 Telas do protótipo em versão intermediária, sujeitas a ajustes durante o desenvolvimento e validação
 
 ---
 
-# ✨ Funcionalidades Implementadas
+## ✨ Funcionalidades Implementadas
 
-## 👨‍🏫 Módulo do Professor
+### Gestão de Roteiros
 
-### 📚 Gestão de Roteiros
+* Criação de roteiros experimentais.
+* Edição de informações do roteiro.
+* Controle de visibilidade por status:
 
-* Criação de roteiros experimentais
-* Edição de roteiros
-* Exclusão de roteiros
-* Controle de status:
+  * Rascunho;
+  * Publicado.
 
-    * Rascunho
-    * Publicado
+### Gestão de Passos Experimentais
 
-### 🧪 Gestão de Passos
+* Inserção de passos dinâmicos no roteiro.
+* Edição de passos por meio de modal.
+* Exclusão de etapas.
+* Reordenação sequencial automática dos passos.
 
-* Adição dinâmica de etapas
-* Reordenação automática
-* Exclusão de passos
-* Edição via modal
+### Tipos de Entrada
 
-### 📝 Tipos de Entrada
+Cada passo do roteiro pode definir o tipo de resposta esperado do aluno, como:
 
-Configuração do formato esperado para respostas dos alunos:
-
-* Texto
-* Número
-* Foto
-
-### 👥 Gestão de Turmas
-
-* Criação de turmas
-* Organização de alunos
-* Associação entre roteiro e turma
+* Texto;
+* Número;
+* Foto.
 
 ---
 
-# 🏗️ Arquitetura do Sistema
+## 🧪 Objetivo Acadêmico
 
-O sistema utiliza arquitetura MVC (Model-View-Controller), promovendo organização, manutenção e escalabilidade.
+O projeto faz parte de um Trabalho de Conclusão de Curso voltado ao desenvolvimento de uma ferramenta digital de apoio à Experimentação Investigativa no ensino de Química.
 
-```text
-+----------------------+
-|     Front-end        |
-| Thymeleaf + Bootstrap|
-+----------+-----------+
-           |
-           | HTTP
-           v
-+----------------------+
-|   Spring Boot API    |
-| Controllers/Services |
-+----------+-----------+
-           |
-           | JPA/Hibernate
-           v
-+----------------------+
-|     PostgreSQL       |
-|   Banco de Dados     |
-+----------------------+
-```
+A proposta busca contribuir com a prática docente ao oferecer um ambiente específico para organização de roteiros experimentais, acompanhamento das etapas das atividades e estruturação dos registros realizados pelos estudantes.
 
 ---
 
-# 📊 Modelagem do Sistema
+## 🏗️ Arquitetura do Sistema
 
-## 🗄️ Entidades Principais
+O projeto utiliza o padrão **MVC (Model-View-Controller)**, favorecendo a separação de responsabilidades, a organização do código e a manutenção do sistema.
 
-| Entidade  | Responsabilidade                 |
-| --------- | -------------------------------- |
-| Professor | Gerencia roteiros e turmas       |
-| Turma     | Organização dos alunos           |
-| Roteiro   | Estrutura do experimento         |
-| Passo     | Etapas experimentais             |
-| Resposta  | Resultados enviados pelos alunos |
+### Camadas principais
 
----
-
-# 🔗 Relacionamentos
-
-```text
-Professor
-   ├── Turmas
-   └── Roteiros
-            └── Passos
-                     └── Respostas
-                     
-                     
-```
-
+* **Model:** representa as entidades do sistema, como Professor, Turma, Roteiro, Passo, Aluno e Resposta.
+* **View:** telas web desenvolvidas com Thymeleaf, HTML e Bootstrap.
+* **Controller:** camada responsável por receber requisições, acionar regras de negócio e retornar as páginas correspondentes.
+* **Repository:** camada de persistência responsável pela comunicação com o banco de dados.
 
 ---
 
-# 🧩 Estrutura do Banco de Dados (DER)
+## 🧰 Stack Tecnológico
 
-## Tabela tb_roteiro
-
-| Campo        | Tipo    |
-| ------------ | ------- |
-| id           | bigint  |
-| titulo       | varchar |
-| nome         | varchar |
-| descricao    | text    |
-| professor_id | bigint  |
-| turma_id     | bigint  |
-
----
-
-## Tabela tb_passo
-
-| Campo      | Tipo    |
-| ---------- | ------- |
-| id         | bigint  |
-| ordem      | integer |
-| instrucao  | text    |
-| roteiro_id | bigint  |
-
----
-
-## Tabela tb_resposta
-
-| Campo      | Tipo      |
-| ---------- | --------- |
-| id         | bigint    |
-| conteudo   | text      |
-| data_envio | timestamp |
-| aluno_id   | bigint    |
-| passo_id   | bigint    |
-
----
-
-# 🧠 Diagrama UML
-
-```text
-Professor
-   │
-   ├── Turma
-   │
-   └── Roteiro
-          └── Passo
-                 └── Resposta
-```
-
----
-
-# 📂 Organização de Pacotes
-
-```text
-src/main/java/br/edu/ifg/labguide_professor
-│
-├── controller
-│   └── Endpoints e rotas da aplicação
-│
-├── model
-│   └── Entidades JPA
-│
-├── repository
-│   └── Interfaces Spring Data JPA
-│
-├── service
-│   └── Regras de negócio
-│
-└── config
-    └── Configurações do sistema
-```
-
----
-
-# ⚙️ Tecnologias Utilizadas
-
-| Tecnologia      | Função                        |
-| --------------- | ----------------------------- |
-| Java 21         | Linguagem principal           |
-| Spring Boot 3   | Framework back-end            |
-| PostgreSQL      | Banco de dados                |
-| Spring Data JPA | Persistência                  |
-| Hibernate       | ORM                           |
-| Thymeleaf       | Renderização Web              |
-| Bootstrap 5     | Interface visual              |
-| Lombok          | Produtividade                 |
-| Maven           | Gerenciamento de dependências |
-
----
-
-# ▶️ Como Executar o Projeto
-
-## Pré-requisitos
+### Backend
 
 * Java 21
+* Spring Boot 3.x
+* Spring Data JPA
+* Hibernate
 * Maven
+* Lombok
+
+### Frontend Web
+
+* Thymeleaf
+* HTML5
+* CSS3
+* Bootstrap 5
+* JavaScript
+
+### Banco de Dados
+
 * PostgreSQL
 
+### Mobile
+
+O módulo mobile não faz parte do escopo principal desta etapa do projeto. A arquitetura, entretanto, considera uma futura integração com uma interface voltada ao aluno, permitindo que estudantes acessem roteiros e registrem respostas durante a execução dos experimentos.
+
 ---
 
-## Clone o repositório
+## 📊 Estrutura de Dados
+
+O sistema foi modelado para integrar o ambiente web do professor com uma futura interface de uso discente.
+
+### Entidades principais
+
+* **Professor:** responsável pela criação e gestão de conteúdos, turmas e roteiros.
+* **Turma:** organiza os alunos vinculados ao professor.
+* **Roteiro:** representa a atividade experimental planejada.
+* **Passo:** define as etapas sequenciais do roteiro.
+* **Aluno:** usuário que executará os roteiros experimentais.
+* **Resposta:** registra os dados enviados pelos alunos durante a atividade.
+* **Relatório:** representa a consolidação dos dados relacionados à execução dos roteiros.
+
+---
+
+## 🔄 Versionamento de Código
+
+O versionamento do projeto é realizado com **Git**, permitindo o controle das alterações feitas durante o desenvolvimento.
+
+O repositório remoto é mantido no **GitHub**, possibilitando:
+
+* registro do histórico de modificações;
+* organização das versões do sistema;
+* recuperação de estados anteriores do código;
+* acompanhamento da evolução das funcionalidades;
+* documentação do progresso técnico do protótipo.
+
+Os commits são realizados conforme a evolução das funcionalidades, correções de erros, ajustes de interface e melhorias de usabilidade.
+
+---
+
+## 🖼️ Protótipos de Interface
+
+As telas apresentadas na documentação do projeto representam uma **versão intermediária do protótipo** do Módulo do Professor.
+
+Essas telas servem como base visual e funcional para a implementação, podendo sofrer alterações durante o desenvolvimento, testes, validação e refinamento da ferramenta.
+
+Portanto, as interfaces não devem ser interpretadas como versão definitiva, mas como parte do processo evolutivo de construção do sistema.
+
+---
+
+## 📌 Funcionalidades em Desenvolvimento
+
+* Gestão completa de turmas.
+* Associação de roteiros às turmas.
+* Acompanhamento das respostas dos alunos.
+* Geração de relatórios.
+* Melhorias de usabilidade.
+* Ajustes de responsividade.
+* Integração futura com módulo mobile.
+
+---
+
+## ▶️ Como Executar o Projeto
+
+### Pré-requisitos
+
+Antes de executar o projeto, é necessário ter instalado:
+
+* Java 21;
+* Maven;
+* PostgreSQL;
+* Git.
+
+### Clonar o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/labguide-professor.git
+git clone URL_DO_REPOSITORIO
 ```
 
----
+### Acessar a pasta do projeto
 
-## Configure o banco de dados
-
-Editar o arquivo:
-
-```text
-src/main/resources/application.properties
+```bash
+cd nome-do-projeto
 ```
 
----
-
-## Execute o projeto
+### Executar a aplicação
 
 ```bash
 mvn spring-boot:run
 ```
 
----
+Após iniciar a aplicação, acesse no navegador:
 
-# 🛣️ Roadmap
-
-## ✅ Concluído
-
-* [x] CRUD de roteiros
-* [x] CRUD de passos
-* [x] Controle de status
-* [x] Reordenação automática
-* [x] Integração PostgreSQL
-
-## 🚧 Em desenvolvimento
-
-* [ ] Upload de imagens
-* [ ] Dashboard do professor
-* [ ] Autenticação JWT
-* [ ] Módulo mobile do aluno
-* [ ] Relatórios experimentais
+```bash
+http://localhost:8080
+```
 
 ---
 
-# 🎓 Projeto Acadêmico
+## 📚 Contexto do Projeto
 
-Projeto desenvolvido como Trabalho de Conclusão de Curso (TCC) no Instituto Federal de Goiás (IFG).
+O LabGuide surge como uma proposta interdisciplinar entre as áreas de **Sistemas de Informação** e **Ensino de Química**, buscando aplicar recursos tecnológicos no apoio a práticas experimentais investigativas.
+
+A proposta não tem como objetivo substituir ambientes virtuais institucionais já existentes, mas oferecer uma ferramenta específica para o contexto de atividades experimentais em laboratório, especialmente no acompanhamento estruturado de roteiros e etapas práticas.
 
 ---
 
-# 👨‍💻 Autor
+## 👨‍💻 Autor
 
-**Ramon Oliveira**
-Desenvolvedor do módulo LabGuide Professor.
+**Ramon Oliveira Nunes**
+Bacharelado em Sistemas de Informação
+Instituto Federal de Goiás - Campus Luziânia
+
+---
+
+## 📄 Licença
+
+Este projeto está em desenvolvimento para fins acadêmicos.

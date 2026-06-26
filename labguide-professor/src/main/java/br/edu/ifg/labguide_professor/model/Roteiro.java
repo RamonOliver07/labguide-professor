@@ -26,9 +26,14 @@ public class Roteiro {
     @Column(columnDefinition = "TEXT")
     private String descricao;
 
-    // NOVO CAMPO: Controla se o roteiro está visível para os alunos
     @Column(name = "status", length = 50, nullable = false)
-    private String status = "RASCUNHO"; // Valor inicial padrão
+    private String status = "RASCUNHO";
+
+    @Column(columnDefinition = "TEXT")
+    private String problematizacao;
+
+    @Column(columnDefinition = "TEXT")
+    private String materiais;
 
     @ManyToOne
     @JoinColumn(name = "turma_id", nullable = false)
@@ -41,14 +46,15 @@ public class Roteiro {
     @OneToMany(mappedBy = "roteiro", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Passo> passos;
 
-    public Roteiro(String titulo, String descricao, Turma turma, Professor professor) {
+    // CONSTRUTOR ATUALIZADO COM OS NOVOS CAMPOS
+    public Roteiro(String titulo, String descricao, String problematizacao, String materiais, Turma turma, Professor professor) {
         this.titulo = titulo;
         this.nome = titulo;
         this.descricao = descricao;
+        this.problematizacao = problematizacao;
+        this.materiais = materiais;
         this.turma = turma;
         this.professor = professor;
-        this.status = "RASCUNHO"; // Garante o padrão no construtor
+        this.status = "RASCUNHO";
     }
-
-
 }

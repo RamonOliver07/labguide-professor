@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec27e91a-4925-4867-9861-f7e13d1b488b" name="Changes" comment="feat: atualizado todas as cores das navbar, ajuste de botões, ajuste de rodapé acrecenteando em algumas telas, e ação de enviar arquivo para excel">
-      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/static/img/DiagramaClassesLabguide.png" afterDir="false" />
+    <list default="true" id="ec27e91a-4925-4867-9861-f7e13d1b488b" name="Changes" comment="feat: Atualizado o README.md támbem alguns botões na tela de roteiros">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_05_2026_01_46_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-roteiros.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-roteiros.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/model/Roteiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/model/Roteiro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-roteiro.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-roteiro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/visualizar-roteiro.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/visualizar-roteiro.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,61 +53,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0010762454811268" />
-      <entry key="MS500" value="1.3001156959188471" />
-      <entry key="S2" value="2.381597101175819" />
-      <entry key="S5" value="3.3545704337324054" />
-      <entry key="S10" value="3.9945990172410686" />
-      <entry key="S30" value="4.609968431305118" />
-      <entry key="S60" value="4.815468979102162" />
-      <entry key="M2" value="5.077295655355677" />
-      <entry key="M5" value="5.709404280361828" />
-      <entry key="M10" value="6.203471995767462" />
-      <entry key="M15" value="6.492601950995297" />
-      <entry key="M30" value="8.670120505688502" />
-      <entry key="H1" value="18.325524089703077" />
-      <entry key="H2" value="37.0190212461746" />
-      <entry key="H4" value="59.24753295444485" />
-      <entry key="D1" value="95.96819915145686" />
-      <entry key="W1" value="105.32036712920774" />
+      <entry key="MS100" value="1.0002696980651082" />
+      <entry key="MS500" value="1.280006506429689" />
+      <entry key="S2" value="2.5951417449556664" />
+      <entry key="S5" value="4.240984157825283" />
+      <entry key="S10" value="6.336416393550088" />
+      <entry key="S30" value="12.052334210820671" />
+      <entry key="S60" value="15.796536046694916" />
+      <entry key="M2" value="18.684184973330854" />
+      <entry key="M5" value="22.03658187327008" />
+      <entry key="M10" value="24.458119442142735" />
+      <entry key="M15" value="25.68446506350271" />
+      <entry key="M30" value="28.716270600721707" />
+      <entry key="H1" value="38.310929994321945" />
+      <entry key="H2" value="57.00043856845463" />
+      <entry key="H4" value="79.63102631051521" />
+      <entry key="D1" value="117.53040478629798" />
+      <entry key="W1" value="127.25167651695686" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="1.7460527067943367E-96" />
-      <entry key="S5" value="4.975342007372042E-39" />
-      <entry key="S10" value="7.053610428264407E-20" />
-      <entry key="S30" value="4.1317796909981636E-7" />
-      <entry key="S60" value="6.42789210472466E-4" />
-      <entry key="M2" value="0.025353287961770686" />
-      <entry key="M5" value="0.2299395706270905" />
-      <entry key="M10" value="0.47955967549227196" />
-      <entry key="M15" value="0.615060571372014" />
-      <entry key="M30" value="0.939967421989707" />
-      <entry key="H1" value="2.206707968054499" />
-      <entry key="H2" value="4.915805750779898" />
-      <entry key="H4" value="8.039731011452947" />
-      <entry key="D1" value="12.703285576590579" />
-      <entry key="W1" value="13.805229810078973" />
+      <entry key="MS100" value="2.3936533457982995E-150" />
+      <entry key="MS500" value="1.1907271358912305E-30" />
+      <entry key="S2" value="3.3033383761830474E-8" />
+      <entry key="S5" value="0.0010176096695907208" />
+      <entry key="S10" value="0.031899994821170764" />
+      <entry key="S30" value="0.31714913959207985" />
+      <entry key="S60" value="0.5631609253454618" />
+      <entry key="M2" value="0.7514227956186633" />
+      <entry key="M5" value="0.9541735235176153" />
+      <entry key="M10" value="1.1945451354328278" />
+      <entry key="M15" value="1.3612094927458167" />
+      <entry key="M30" value="1.737897248258191" />
+      <entry key="H1" value="2.97061076045481" />
+      <entry key="H2" value="5.65183449030762" />
+      <entry key="H4" value="8.822514095641457" />
+      <entry key="D1" value="13.645673094284282" />
+      <entry key="W1" value="14.796273252393872" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.7964046246357217" />
-      <entry key="MS500" value="1.242541763348542" />
-      <entry key="S2" value="2.3407882918548095" />
-      <entry key="S5" value="3.282221533092739" />
-      <entry key="S10" value="3.9233930638477337" />
-      <entry key="S30" value="4.571684778706822" />
-      <entry key="S60" value="4.794422920688951" />
-      <entry key="M2" value="5.090350652153145" />
-      <entry key="M5" value="5.93198066766276" />
-      <entry key="M10" value="6.677974783601966" />
-      <entry key="M15" value="7.1037847069407265" />
-      <entry key="M30" value="9.60718253711966" />
-      <entry key="H1" value="20.528349829300467" />
-      <entry key="H2" value="41.93022596772192" />
-      <entry key="H4" value="67.28341757709809" />
-      <entry key="D1" value="108.67045696937015" />
-      <entry key="W1" value="119.12543702974756" />
+      <entry key="MS100" value="0.9661968108465763" />
+      <entry key="MS500" value="1.271051229631567" />
+      <entry key="S2" value="2.590425284888134" />
+      <entry key="S5" value="4.2382958345844" />
+      <entry key="S10" value="6.357193806209682" />
+      <entry key="S30" value="12.335851612044097" />
+      <entry key="S60" value="16.3293089365338" />
+      <entry key="M2" value="19.41468953819987" />
+      <entry key="M5" value="22.978967082539707" />
+      <entry key="M10" value="25.644832278883147" />
+      <entry key="M15" value="27.0396290450434" />
+      <entry key="M30" value="30.450027160812756" />
+      <entry key="H1" value="41.277147453913976" />
+      <entry key="H2" value="62.64745751469502" />
+      <entry key="H4" value="88.44956766686606" />
+      <entry key="D1" value="131.17501648316116" />
+      <entry key="W1" value="142.0477844941449" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -245,7 +247,18 @@
       <updated>1775228873660</updated>
       <workItem from="1779991019567" duration="5402000" />
       <workItem from="1780004511356" duration="20816000" />
-      <workItem from="1780054231149" duration="9513000" />
+      <workItem from="1780054231149" duration="12735000" />
+      <workItem from="1780076368814" duration="1416000" />
+      <workItem from="1780961294484" duration="292000" />
+      <workItem from="1781045189086" duration="537000" />
+      <workItem from="1781046809941" duration="234000" />
+      <workItem from="1782255368823" duration="147000" />
+      <workItem from="1782261472674" duration="716000" />
+      <workItem from="1782325794932" duration="4818000" />
+      <workItem from="1782407464181" duration="492000" />
+      <workItem from="1782431595322" duration="747000" />
+      <workItem from="1782439038068" duration="2948000" />
+      <workItem from="1782506602775" duration="300000" />
     </task>
     <task id="LOCAL-00001" summary="feat: adiciona seletor de tipo de entrada (texto, numero, foto) nos passos do roteiro">
       <option name="closed" value="true" />
@@ -287,7 +300,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780027122472</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat: Atualizado o README.md támbem alguns botões na tela de roteiros">
+      <option name="closed" value="true" />
+      <created>1780067404676</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1780067404676</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,6 +344,7 @@
     <MESSAGE value="feat: adiciona seletor de tipo de entrada (texto, numero, foto) nos passos do roteiro" />
     <MESSAGE value="feat: atualizado todas as cores das navbar, ajuste de botões, ajuste de rodapé acrecenteando em algumas telas, e ação de enviar arquivo para excel" />
     <MESSAGE value="feat: atualizado todas as cores das navbar, ajuste de botões, ajuste de rodapé acrecentando em algumas telas, e ação de enviar arquivo para excel" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: atualizado todas as cores das navbar, ajuste de botões, ajuste de rodapé acrecentando em algumas telas, e ação de enviar arquivo para excel" />
+    <MESSAGE value="feat: Atualizado o README.md támbem alguns botões na tela de roteiros" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Atualizado o README.md támbem alguns botões na tela de roteiros" />
   </component>
 </project>
