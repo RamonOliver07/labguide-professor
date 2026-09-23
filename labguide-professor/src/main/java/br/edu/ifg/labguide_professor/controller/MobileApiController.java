@@ -1,6 +1,7 @@
 package br.edu.ifg.labguide_professor.controller;
 
-import br.edu.ifg.labguide_professor.dto.RespostaDTO;
+import br.edu.ifg.labguide_professor.dto.PassoMobileDTO;
+import br.edu.ifg.labguide_professor.dto.RespostaMobileDTO;
 import br.edu.ifg.labguide_professor.model.Aluno;
 import br.edu.ifg.labguide_professor.model.Passo;
 import br.edu.ifg.labguide_professor.model.Resposta;
@@ -16,7 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/mobile")
-@CrossOrigin(origins = "*") // Permite que qualquer aplicativo mobile converse com essa API
+@CrossOrigin(origins = "*")
 public class MobileApiController {
 
     @Autowired
@@ -28,27 +29,62 @@ public class MobileApiController {
     @Autowired
     private PassoRepository passoRepository;
 
-    // Rota que o celular vai chamar para enviar as respostas
-    @PostMapping("/enviar-resposta")
-    public ResponseEntity<String> receberResposta(@RequestBody RespostaDTO dto) {
+    // Rota 1: Mobile envia os dados de um passo concluído (texto e imagem)
+    @PostMapping("/experimentos/{experimentoId}/passo/{passoId}")
+    public ResponseEntity<String> registrarPasso(
+            @PathVariable Long experimentoId,
+            @PathVariable Long passoId,
+            @RequestBody PassoMobileDTO payload) {
 
-        Optional<Aluno> alunoOpt = alunoRepository.findById(dto.getAlunoId());
-        Optional<Passo> passoOpt = passoRepository.findById(dto.getPassoId());
+        // TODO: Substituir 1L pelo ID do aluno extraído do Token JWT futuramente
+        Long alunoIdDoJwt = 1L;
+
+        Optional<Aluno> alunoOpt = alunoRepository.findById(alunoIdDoJwt);
+        Optional<Passo> passoOpt = passoRepository.findById(passoId);
 
         if (alunoOpt.isPresent() && passoOpt.isPresent()) {
             Resposta novaResposta = new Resposta();
             novaResposta.setAluno(alunoOpt.get());
             novaResposta.setPasso(passoOpt.get());
-            novaResposta.setConteudo(dto.getConteudo());
-            novaResposta.setDataEnvio(LocalDateTime.now()); // Grava a hora exata
+
+            // Junta o texto e a imagem do DTO para salvar no conteúdo
+            String conteudoFinal = "Texto: " + payload.getTexto() + " | Imagem: " + payload.getImagem();
+            novaResposta.setConteudo(conteudoFinal);
+            novaResposta.setDataEnvio(LocalDateTime.now());
 
             respostaRepository.save(novaResposta);
+            return ResponseEntity.ok("Evidências do passo registradas com sucesso!");
+        }
 
-            // Retorna um sinal de "OK" (Status 200) para o celular
+        return ResponseEntity.badRequest().body("Erro: Aluno ou Passo não encontrados.");
+    }
+
+    // Rota 2: Mobile envia respostas diretas (questionários)
+    @PostMapping("/experimentos/{experimentoId}/passo/{passoId}/respostas")
+    public ResponseEntity<String> registrarResposta(
+            @PathVariable Long experimentoId,
+            @PathVariable Long passoId,
+            @RequestBody RespostaMobileDTO payload) {
+
+        // TODO: Substituir 1L pelo ID do aluno extraído do Token JWT futuramente
+        Long alunoIdDoJwt = 1L;
+
+        Optional<Aluno> alunoOpt = alunoRepository.findById(alunoIdDoJwt);
+        Optional<Passo> passoOpt = passoRepository.findById(passoId);
+
+        if (alunoOpt.isPresent() && passoOpt.isPresent()) {
+            Resposta novaResposta = new Resposta();
+            novaResposta.setAluno(alunoOpt.get());
+            novaResposta.setPasso(passoOpt.get());
+
+            // Converte qualquer dado (booleano, número) para String antes de salvar
+            novaResposta.setConteudo(String.valueOf(payload.getResposta()));
+            novaResposta.setDataEnvio(LocalDateTime.now());
+
+            respostaRepository.save(novaResposta);
             return ResponseEntity.ok("Resposta enviada com sucesso para o professor!");
         }
 
-        // Retorna um erro (Status 400) se mandar ID errado
-        return ResponseEntity.badRequest().body("Erro: Aluno ou Passo não existem no banco de dados.");
+        return ResponseEntity.badRequest().body("Erro: Aluno ou Passo não encontrados.");
     }
 }

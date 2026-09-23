@@ -30,16 +30,15 @@ public class TurmaController {
 
     @PostMapping("/salvar")
     public String salvar(Turma turma, @RequestParam("professorId") Long professorId) {
-        // 1. Busca o professor selecionado no banco de dados pelo ID
+        // 1. Busca o professor
         professorRepository.findById(professorId).ifPresent(prof -> {
-            // 2. Associa o professor localizado à turma
             turma.setProfessor(prof);
         });
 
-        // 3. Salva a turma com o relacionamento preenchido de verdade
-        turmaRepository.save(turma);
+        // 2. Salva a turma e guarda o objeto salvo (que agora tem um ID gerado pelo banco)
+        Turma turmaSalva = turmaRepository.save(turma);
 
-        // 4. Redireciona de volta para o formulário com o parâmetro de sucesso
-        return "redirect:/turmas/novo?sucesso";
+        // 3. Redireciona passando o parâmetro de sucesso E o ID da nova turma
+        return "redirect:/turmas/novo?sucesso=true&turmaId=" + turmaSalva.getId();
     }
 }

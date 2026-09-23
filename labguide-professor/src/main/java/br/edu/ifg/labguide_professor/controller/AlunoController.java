@@ -54,4 +54,29 @@ public class AlunoController {
 
         return "redirect:/alunos";
     }
+    // Rota que recebe o link gerado pelo professor (ex: /alunos/registro-mobile?turma=5)
+    @GetMapping("/registro-mobile")
+    public String exibirTelaRegistroMobile(@RequestParam("turma") Long turmaId, Model model) {
+        Turma turma = turmaRepository.findById(turmaId)
+                .orElseThrow(() -> new IllegalArgumentException("Turma não encontrada. Verifique o link de convite."));
+
+        model.addAttribute("turma", turma);
+        return "registro-mobile";
+    }
+
+    // Rota que processa o formulário preenchido pelo aluno no celular
+    @PostMapping("/registro-mobile/salvar")
+    public String salvarRegistroMobile(Aluno aluno, @RequestParam("turmaId") Long turmaId, Model model) {
+        Turma turma = turmaRepository.findById(turmaId)
+                .orElseThrow(() -> new IllegalArgumentException("Turma não encontrada."));
+
+        // Associa o aluno à turma do convite e salva
+        aluno.setTurma(turma);
+        alunoRepository.save(aluno);
+
+        // Devolve a mesma tela, mas agora exibindo a mensagem de sucesso
+        model.addAttribute("sucesso", true);
+        model.addAttribute("turma", turma);
+        return "registro-mobile";
+    }
 }

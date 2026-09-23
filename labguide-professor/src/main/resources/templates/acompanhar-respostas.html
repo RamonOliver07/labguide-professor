@@ -128,9 +128,9 @@
                                                 <div th:with="achouResposta=false">
                                                     <div th:each="resposta : ${respostas}" th:if="${resposta.aluno.id == aluno.id and resposta.passo.id == passo.id}">
 
-                                                            <span th:if="${passo.tipoEntrada == 'TEXTO' or passo.tipoEntrada == 'NUMERO'}"
-                                                                  class="fs-5 text-primary fw-semibold" th:text="${resposta.conteudo}">
-                                                            </span>
+                                                        <span th:if="${passo.tipoEntrada == 'TEXTO' or passo.tipoEntrada == 'NUMERO'}"
+                                                              class="fs-5 text-primary fw-semibold" th:text="${resposta.conteudo}">
+                                                        </span>
 
                                                         <div th:if="${passo.tipoEntrada == 'FOTO'}" class="mt-2">
                                                             📸 <a th:href="${resposta.conteudo}" target="_blank" class="text-decoration-none fw-bold text-labguide">Abrir Foto Anexada</a>
@@ -139,6 +139,22 @@
                                                         <div class="text-muted small mt-1">
                                                             Enviado em: <span th:text="${#temporals.format(resposta.dataEnvio, 'dd/MM/yyyy HH:mm')}"></span>
                                                         </div>
+
+                                                        <!-- BOTÃO DE AVALIAÇÃO -->
+                                                        <div class="mt-3 text-end">
+                                                            <a th:if="${resposta.nota == null}"
+                                                               th:href="@{/professor/avaliacoes/{id}(id=${resposta.id})}"
+                                                               class="btn btn-sm btn-labguide fw-bold shadow-sm">
+                                                                ⭐ Avaliar Passo
+                                                            </a>
+
+                                                            <a th:if="${resposta.nota != null}"
+                                                               th:href="@{/professor/avaliacoes/{id}(id=${resposta.id})}"
+                                                               class="btn btn-sm btn-outline-success fw-bold shadow-sm">
+                                                                ✅ Avaliado (Nota: <span th:text="${resposta.nota}"></span>) - Editar
+                                                            </a>
+                                                        </div>
+
                                                     </div>
                                                 </div>
 

@@ -23,6 +23,13 @@ public class Resposta {
     @Column(name = "data_envio")
     private LocalDateTime dataEnvio = LocalDateTime.now();
 
+    // --- NOVOS CAMPOS (RF06 - Avaliação do Professor) ---
+    private Double nota;
+
+    @Column(name = "observacao_professor", columnDefinition = "TEXT")
+    private String observacaoProfessor;
+    // ---------------------------------------------------
+
     // Relacionamento: Uma resposta pertence a um Aluno
     @ManyToOne
     @JoinColumn(name = "aluno_id", nullable = false)

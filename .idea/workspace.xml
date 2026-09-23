@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec27e91a-4925-4867-9861-f7e13d1b488b" name="Changes" comment="feat: Atualizado o README.md támbem alguns botões na tela de roteiros">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_05_2026_01_46_[Changes]/shelved.patch" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/AvaliacaoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/dto/PassoMobileDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/dto/RespostaMobileDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/avaliar-resposta.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/registro-mobile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/model/Roteiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/model/Roteiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-roteiro.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-roteiro.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/visualizar-roteiro.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/visualizar-roteiro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/AlunoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/AlunoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/MobileApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/MobileApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/TurmaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/TurmaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/model/Resposta.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/model/Resposta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/acompanhar-respostas.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/acompanhar-respostas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-turma.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-turma.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,6 +265,10 @@
       <workItem from="1782431595322" duration="747000" />
       <workItem from="1782439038068" duration="2948000" />
       <workItem from="1782506602775" duration="300000" />
+      <workItem from="1782606956181" duration="31000" />
+      <workItem from="1787006801133" duration="1742000" />
+      <workItem from="1787704373306" duration="432000" />
+      <workItem from="1790097710393" duration="8700000" />
     </task>
     <task id="LOCAL-00001" summary="feat: adiciona seletor de tipo de entrada (texto, numero, foto) nos passos do roteiro">
       <option name="closed" value="true" />
