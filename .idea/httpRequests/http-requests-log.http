@@ -1,0 +1,136 @@
+POST http://localhost:8080/api/mobile/enviar-resposta
+Content-Type: application/json
+Content-Length: 113
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2026.1.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "alunoId": 1,
+  "passoId": 22,
+  "conteudo": "https://images.unsplash.com/photo-1451187580459-43490279c0fa"
+}
+
+<> 2026-05-28T155959.200.txt
+
+###
+
+POST http://localhost:8080/api/mobile/enviar-resposta
+Content-Type: application/json
+Content-Length: 206
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2026.1.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "alunoId": 1,
+  "passoId": 22,
+  "conteudo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Erlenmeyer_flask_filled_with_pink_liquid.jpg/800px-Erlenmeyer_flask_filled_with_pink_liquid.jpg"
+}
+
+<> 2026-05-28T155631.200.txt
+
+###
+
+POST http://localhost:8080/api/mobile/enviar-resposta
+Content-Type: application/json
+Content-Length: 70
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2026.1.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "alunoId": 1,
+  "passoId": 22,
+  "conteudo": "test labguide.png"
+}
+
+<> 2026-05-28T155353.200.txt
+
+###
+
+POST http://localhost:8080/api/mobile/enviar-resposta
+Content-Type: application/json
+Content-Length: 70
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2026.1.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "alunoId": 1,
+  "passoId": 22,
+  "conteudo": "test labguide.png"
+}
+
+<> 2026-05-28T154459.200.txt
+
+###
+
+POST http://localhost:8080/api/mobile/enviar-resposta
+Content-Type: application/json
+Content-Length: 88
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2026.1.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "alunoId": 1,
+  "passoId": 22,
+  "conteudo": "http://localhost:8080/img/teste.jpg"
+}
+
+<> 2026-05-28T154355.200.txt
+
+###
+
+POST http://localhost:8080/api/mobile/enviar-resposta
+Content-Type: application/json
+Content-Length: 206
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2026.1.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "alunoId": 1,
+  "passoId": 22,
+  "conteudo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Erlenmeyer_flask_filled_with_pink_liquid.jpg/800px-Erlenmeyer_flask_filled_with_pink_liquid.jpg"
+}
+
+<> 2026-05-28T152738.200.txt
+
+###
+
+POST http://localhost:8080/api/mobile/enviar-resposta
+Content-Type: application/json
+Content-Length: 206
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2026.1.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "alunoId": 1,
+  "passoId": 22,
+  "conteudo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Erlenmeyer_flask_filled_with_pink_liquid.jpg/800px-Erlenmeyer_flask_filled_with_pink_liquid.jpg"
+}
+
+<> 2026-05-28T152733.200.txt
+
+###
+
+POST http://localhost:8080/api/mobile/enviar-resposta
+Content-Type: application/json
+Content-Length: 97
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2026.1.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "alunoId": 1,
+  "passoId": 13,
+  "conteudo": "A solução ficou rosa choque pelo IntelliJ!"
+}
+
+<> 2026-05-28T145740.200.txt
+
+###
+
