@@ -64,11 +64,10 @@ public class RoteiroController {
         professorRepository.findAll().stream().findFirst().ifPresent(roteiro::setProfessor);
 
         // Salva no banco de dados
-        roteiroRepository.save(roteiro);
+        Roteiro roteiroSalvo = roteiroRepository.save(roteiro);
 
-        return "redirect:/roteiros/novo?sucesso";
 
-    }
+        return "redirect:/roteiros/visualizar/" + roteiroSalvo.getId();    }
 
     // Tela que lista todos os roteiros cadastrados
     @GetMapping

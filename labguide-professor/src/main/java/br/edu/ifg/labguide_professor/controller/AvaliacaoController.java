@@ -24,20 +24,20 @@ public class AvaliacaoController {
         return "avaliar-resposta"; // Procura o arquivo avaliar-resposta.html
     }
 
-    // Recebe a nota digitada pelo professor no formulário HTML e salva no banco
-    @PostMapping("/{respostaId}")
-    public String salvarAvaliacao(@PathVariable Long respostaId,
-                                  @RequestParam Double nota,
-                                  @RequestParam String observacaoProfessor) {
+    @PostMapping("/professor/avaliacoes/{id}")
+    public String salvarAvaliacao(@PathVariable Long id,
+                                  @RequestParam("nota") Double nota,
+                                  @RequestParam(value = "observacaoProfessor", required = false) String observacaoProfessor) {
 
-        Resposta resposta = respostaRepository.findById(respostaId)
-                .orElseThrow(() -> new IllegalArgumentException("Resposta inválida:" + respostaId));
+        Resposta resposta = respostaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Resposta não encontrada: " + id));
 
-        // Atualiza a resposta com os dados da avaliação
         resposta.setNota(nota);
         resposta.setObservacaoProfessor(observacaoProfessor);
         respostaRepository.save(resposta);
 
-        return "redirect:/roteiros";
+        // Pega o ID do roteiro vinculado ao passo dessa resposta e volta direto para a planilha!
+        Long roteiroId = resposta.getPasso().getRoteiro().getId();
+        return "redirect:/roteiros/visualizar/" + roteiroId + "/respostas";
     }
 }
