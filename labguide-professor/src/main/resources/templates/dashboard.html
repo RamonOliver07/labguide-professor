@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -7,6 +6,7 @@
     <title>Dashboard - LabGuide</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -33,7 +33,6 @@
         /* ===============================
            NAVBAR
            =============================== */
-
         .navbar-labguide {
             background: linear-gradient(135deg, var(--labguide-primary), var(--labguide-dark));
             box-shadow: 0 10px 28px rgba(31, 67, 81, 0.28);
@@ -72,19 +71,6 @@
             transition: all 0.25s ease;
         }
 
-        .btn-nav-light {
-            background: rgba(255, 255, 255, 0.95);
-            color: #1f2933;
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
-        }
-
-        .btn-nav-light:hover {
-            background: #ffffff;
-            color: #1f2933;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
-        }
-
         .btn-nav-outline {
             color: white;
             background: rgba(255, 255, 255, 0.08);
@@ -100,7 +86,6 @@
         /* ===============================
            HEADER DO DASHBOARD
            =============================== */
-
         .dashboard-header {
             margin-top: 30px;
             border-radius: 28px;
@@ -185,9 +170,7 @@
         .btn-dashboard-primary {
             background: rgba(255, 255, 255, 0.96);
             color: #1f2933;
-            box-shadow:
-                    0 14px 24px rgba(0, 0, 0, 0.20),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            box-shadow: 0 14px 24px rgba(0, 0, 0, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
 
         .btn-dashboard-primary:hover {
@@ -200,9 +183,7 @@
         .btn-dashboard-warning {
             background: linear-gradient(135deg, #ffc107, #ffb000);
             color: #1f2933;
-            box-shadow:
-                    0 14px 24px rgba(255, 193, 7, 0.28),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            box-shadow: 0 14px 24px rgba(255, 193, 7, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
         }
 
         .btn-dashboard-warning:hover {
@@ -212,26 +193,30 @@
         }
 
         /* ===============================
-           CARDS PRINCIPAIS
+           CARDS PRINCIPAIS (CLICÁVEIS)
            =============================== */
-
         .metric-card {
-            border: none;
+            border: 2px solid transparent;
             border-radius: 24px;
             background: rgba(255, 255, 255, 0.86);
             backdrop-filter: blur(12px);
-            box-shadow:
-                    0 18px 34px rgba(43, 93, 112, 0.14),
-                    inset 0 1px 0 rgba(255,255,255,0.9);
+            box-shadow: 0 18px 34px rgba(43, 93, 112, 0.14), inset 0 1px 0 rgba(255,255,255,0.9);
             transition: all 0.25s ease;
             overflow: hidden;
             position: relative;
             min-height: 178px;
+            cursor: pointer;
         }
 
         .metric-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 28px 46px rgba(43, 93, 112, 0.22);
+            border-color: rgba(43, 93, 112, 0.25);
+        }
+
+        .metric-card.active-card {
+            border-color: var(--labguide-primary);
+            background: #ffffff;
         }
 
         .metric-card::after {
@@ -245,17 +230,9 @@
             opacity: 0.13;
         }
 
-        .metric-card.primary::after {
-            background: var(--labguide-primary);
-        }
-
-        .metric-card.warning::after {
-            background: var(--labguide-warning);
-        }
-
-        .metric-card.success::after {
-            background: var(--labguide-green);
-        }
+        .metric-card.primary::after { background: var(--labguide-primary); }
+        .metric-card.warning::after { background: var(--labguide-warning); }
+        .metric-card.success::after { background: var(--labguide-green); }
 
         .metric-icon {
             width: 56px;
@@ -269,17 +246,9 @@
             box-shadow: 0 10px 18px rgba(0,0,0,0.18);
         }
 
-        .metric-icon.primary {
-            background: linear-gradient(135deg, var(--labguide-primary), #3f8aa3);
-        }
-
-        .metric-icon.warning {
-            background: linear-gradient(135deg, #ffc107, #ff9800);
-        }
-
-        .metric-icon.success {
-            background: linear-gradient(135deg, #198754, #20c997);
-        }
+        .metric-icon.primary { background: linear-gradient(135deg, var(--labguide-primary), #3f8aa3); }
+        .metric-icon.warning { background: linear-gradient(135deg, #ffc107, #ff9800); }
+        .metric-icon.success { background: linear-gradient(135deg, #198754, #20c997); }
 
         .metric-label {
             font-size: 0.78rem;
@@ -301,10 +270,17 @@
             font-size: 0.92rem;
         }
 
-        /* ===============================
-           PAINÉIS
-           =============================== */
+        .click-hint {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--labguide-primary);
+            margin-top: 10px;
+            display: inline-block;
+        }
 
+        /* ===============================
+           PAINÉIS E CHIPS INTERATIVOS
+           =============================== */
         .panel-card {
             border: none;
             border-radius: 26px;
@@ -319,22 +295,14 @@
             border-bottom: 1px solid rgba(43, 93, 112, 0.10);
         }
 
-        .panel-title {
-            font-weight: 800;
-            margin: 0;
-            color: #1f2933;
-        }
-
-        .panel-subtitle {
-            margin: 4px 0 0;
-            color: #6c757d;
-            font-size: 0.94rem;
-        }
+        .panel-title { font-weight: 800; margin: 0; color: #1f2933; }
+        .panel-subtitle { margin: 4px 0 0; color: #6c757d; font-size: 0.94rem; }
 
         .chart-area {
             max-width: 410px;
             margin: 0 auto;
             padding: 25px 18px 10px;
+            cursor: pointer;
         }
 
         .status-box {
@@ -357,6 +325,30 @@
             border-radius: 999px;
         }
 
+        .feature-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            background: #eef7f9;
+            color: var(--labguide-primary);
+            border: 1px solid rgba(43, 93, 112, 0.18);
+            transition: all 0.2s ease;
+        }
+
+        .feature-chip.clickable {
+            cursor: pointer;
+        }
+
+        .feature-chip.clickable:hover {
+            background: var(--labguide-primary);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
         .dashboard-list-item {
             display: flex;
             gap: 14px;
@@ -365,9 +357,7 @@
             border-bottom: 1px solid #edf1f3;
         }
 
-        .dashboard-list-item:last-child {
-            border-bottom: none;
-        }
+        .dashboard-list-item:last-child { border-bottom: none; }
 
         .list-icon {
             width: 44px;
@@ -382,30 +372,9 @@
             box-shadow: 0 10px 18px rgba(0,0,0,0.13);
         }
 
-        .list-icon.primary {
-            background: linear-gradient(135deg, var(--labguide-primary), #3f8aa3);
-        }
-
-        .list-icon.success {
-            background: linear-gradient(135deg, #198754, #20c997);
-        }
-
-        .list-icon.warning {
-            background: linear-gradient(135deg, #ffc107, #ff9800);
-        }
-
-        .feature-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            border-radius: 999px;
-            padding: 8px 13px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            background: #eef7f9;
-            color: var(--labguide-primary);
-            border: 1px solid rgba(43, 93, 112, 0.12);
-        }
+        .list-icon.primary { background: linear-gradient(135deg, var(--labguide-primary), #3f8aa3); }
+        .list-icon.success { background: linear-gradient(135deg, #198754, #20c997); }
+        .list-icon.warning { background: linear-gradient(135deg, #ffc107, #ff9800); }
 
         .mini-card {
             border-radius: 20px;
@@ -417,67 +386,45 @@
         }
 
         /* ===============================
-           RESPONSIVIDADE
+           PAINEL LATERAL ESQUERDO (OFFCANVAS)
            =============================== */
+        .offcanvas-labguide {
+            width: 420px !important;
+            max-width: 90vw;
+            border-right: none;
+            box-shadow: 12px 0 36px rgba(31, 67, 81, 0.25);
+        }
+
+        .offcanvas-labguide .offcanvas-header {
+            background: linear-gradient(135deg, var(--labguide-primary), var(--labguide-dark));
+            color: white;
+            padding: 22px 24px;
+        }
+
+        .drawer-item {
+            background: #f8fbfc;
+            border: 1px solid rgba(43, 93, 112, 0.12);
+            border-radius: 16px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-item:hover {
+            background: #eef7f9;
+            transform: translateX(4px);
+        }
 
         @media (max-width: 768px) {
-            .navbar-labguide {
-                min-height: auto;
-                padding: 14px 0;
-            }
-
-            .navbar-labguide .container {
-                flex-direction: column;
-                align-items: stretch !important;
-                gap: 14px;
-            }
-
-            .navbar-labguide .navbar-brand {
-                text-align: center;
-                font-size: 1.35rem;
-            }
-
-            .nav-actions {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .btn-nav-clean {
-                flex: 1;
-                text-align: center;
-                padding: 10px 12px;
-            }
-
-            .dashboard-header {
-                margin-top: 22px;
-                padding: 26px 22px;
-                border-radius: 24px;
-            }
-
-            .small-label {
-                font-size: 0.8rem;
-            }
-
-            .dashboard-title {
-                font-size: 1.65rem;
-            }
-
-            .dashboard-subtitle {
-                font-size: 0.95rem;
-            }
-
-            .dashboard-header .d-flex {
-                width: 100%;
-            }
-
-            .btn-dashboard {
-                width: 100%;
-                min-width: auto;
-            }
-
-            .metric-card {
-                min-height: auto;
-            }
+            .navbar-labguide { min-height: auto; padding: 14px 0; }
+            .navbar-labguide .container { flex-direction: column; align-items: stretch !important; gap: 14px; }
+            .navbar-labguide .navbar-brand { text-align: center; font-size: 1.35rem; }
+            .nav-actions { width: 100%; justify-content: center; }
+            .btn-nav-clean { flex: 1; text-align: center; padding: 10px 12px; }
+            .dashboard-header { margin-top: 22px; padding: 26px 22px; border-radius: 24px; }
+            .dashboard-title { font-size: 1.65rem; }
+            .btn-dashboard { width: 100%; min-width: auto; }
+            .metric-card { min-height: auto; }
         }
     </style>
 </head>
@@ -491,8 +438,6 @@
         </a>
 
         <div class="nav-actions">
-
-
             <form th:action="@{/logout}" method="post" class="m-0">
                 <button type="submit" class="btn btn-nav-clean btn-nav-outline">
                     Sair
@@ -509,12 +454,10 @@
         <div class="header-content">
             <div class="row align-items-center g-4">
                 <div class="col-lg-8">
-                    <div class="small-label">
-                        Dashboard do Professor
-                    </div>
+                    <div class="small-label">Dashboard do Professor</div>
 
-                    <h1 class="dashboard-title">
-                        Olá, <span th:text="${#authentication.name}">Professor</span>!
+                    <h1 class="dashboard-title fw-bold mb-2">
+                        Olá, <span th:text="${nomeProfessorLogado}">Professor</span>!
                     </h1>
 
                     <p class="dashboard-subtitle">
@@ -537,10 +480,10 @@
         </div>
     </section>
 
-    <!-- CARDS PRINCIPAIS -->
+    <!-- CARDS PRINCIPAIS (CLICÁVEIS PARA ABRIR O PAINEL ESQUERDO) -->
     <section class="row g-4 mb-4">
         <div class="col-12 col-md-4">
-            <div class="card metric-card primary h-100">
+            <div class="card metric-card primary h-100" onclick="abrirPainelLateral('roteiros', this)">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-start">
                         <div>
@@ -552,12 +495,13 @@
                     <p class="metric-text mt-3 mb-0">
                         Materiais experimentais cadastrados para aplicação nas turmas.
                     </p>
+                    <span class="click-hint">👉 Clique para listar roteiros</span>
                 </div>
             </div>
         </div>
 
         <div class="col-12 col-md-4">
-            <div class="card metric-card warning h-100">
+            <div class="card metric-card warning h-100" onclick="abrirPainelLateral('turmas', this)">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-start">
                         <div>
@@ -569,12 +513,13 @@
                     <p class="metric-text mt-3 mb-0">
                         Turmas disponíveis para acompanhamento das práticas.
                     </p>
+                    <span class="click-hint">👉 Clique para listar turmas</span>
                 </div>
             </div>
         </div>
 
         <div class="col-12 col-md-4">
-            <div class="card metric-card success h-100">
+            <div class="card metric-card success h-100" onclick="abrirPainelLateral('alunos', this)">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-start">
                         <div>
@@ -586,6 +531,7 @@
                     <p class="metric-text mt-3 mb-0">
                         Estudantes vinculados às turmas do professor.
                     </p>
+                    <span class="click-hint">👉 Clique para listar alunos</span>
                 </div>
             </div>
         </div>
@@ -599,7 +545,7 @@
                 <div class="panel-header">
                     <h5 class="panel-title">Engajamento das Atividades</h5>
                     <p class="panel-subtitle">
-                        Visualização geral das respostas enviadas e pendências recentes.
+                        Clique nas fatias do gráfico ou nos indicadores abaixo para ver os detalhes.
                     </p>
                 </div>
 
@@ -623,8 +569,12 @@
                             </div>
 
                             <div class="d-flex flex-wrap gap-2 mt-3">
-                                <span class="feature-chip">12 responderam</span>
-                                <span class="feature-chip">5 pendentes</span>
+                                <button type="button" class="feature-chip clickable" onclick="abrirPainelLateral('respondidos')">
+                                    ✅ 12 responderam (Ver lista)
+                                </button>
+                                <button type="button" class="feature-chip clickable" onclick="abrirPainelLateral('pendentes')">
+                                    ⏳ 5 pendentes (Ver lista)
+                                </button>
                                 <span class="feature-chip">Acompanhamento ativo</span>
                             </div>
                         </div>
@@ -633,7 +583,7 @@
             </div>
         </div>
 
-        <!-- PAINEL LATERAL -->
+        <!-- PAINEL LATERAL DIREITO (RESUMO OPERACIONAL) -->
         <div class="col-12 col-lg-5">
             <div class="panel-card h-100">
                 <div class="panel-header">
@@ -721,9 +671,161 @@
 
 </main>
 
-<script>
-    const ctx = document.getElementById('graficoEngajamento');
+<!-- =====================================================================
+     GAVETA LATERAL ESQUERDA (OFFCANVAS) COM AS LISTAS DO LEVANTAMENTO
+     ===================================================================== -->
+<div class="offcanvas offcanvas-start offcanvas-labguide" tabindex="-1" id="painelLevantamento" aria-labelledby="tituloPainelLateral">
+    <div class="offcanvas-header">
+        <div>
+            <h5 class="offcanvas-title fw-bold mb-0" id="tituloPainelLateral">Detalhes</h5>
+            <small class="text-white-50" id="subtituloPainelLateral">Levantamento em tempo real</small>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+    </div>
+    <div class="offcanvas-body p-4" id="conteudoPainelLateral">
+        <!-- Preenchido dinamicamente ao clicar nos balões -->
+    </div>
+</div>
 
+<!-- TEMPLATES OCULTOS RENDERIZADOS PELO THYMELEAF COM OS DADOS REAIS DO BANCO -->
+<div id="dados-ocultos-dashboard" class="d-none">
+
+    <!-- 1. LISTA DE ROTEIROS -->
+    <div id="tpl-roteiros">
+        <div th:if="${#lists.isEmpty(listaRoteiros)}" class="text-muted text-center py-4">
+            Nenhum roteiro cadastrado.
+        </div>
+        <div th:each="r : ${listaRoteiros}" class="drawer-item">
+            <div class="d-flex justify-content-between align-items-start mb-1">
+                <strong class="text-dark" th:text="${r.titulo}">Título do Roteiro</strong>
+                <span class="badge bg-secondary" th:text="${r.status}">PUBLICADO</span>
+            </div>
+            <div class="small text-muted mb-2">
+                Turma: <span fw-semibold th:text="${r.turma != null ? r.turma.nome : 'Sem turma'}">Química</span>
+            </div>
+            <a th:href="@{/roteiros/visualizar/{id}/respostas(id=${r.id})}" class="btn btn-sm text-white fw-bold w-100" style="background-color: #2B5D70;">
+                📊 Acompanhar Respostas
+            </a>
+        </div>
+    </div>
+
+    <!-- 2. LISTA DE TURMAS -->
+    <div id="tpl-turmas">
+        <div th:if="${#lists.isEmpty(listaTurmas)}" class="text-muted text-center py-4">
+            Nenhuma turma cadastrada.
+        </div>
+        <div th:each="t : ${listaTurmas}" class="drawer-item">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <strong class="text-dark d-block" th:text="${t.nome}">Nome da Turma</strong>
+                    <small class="text-muted">Ano Letivo: <span th:text="${t.anoLetivo}">2026</span></small>
+                </div>
+                <span class="badge bg-warning text-dark">Ativa</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. LISTA DE ALUNOS -->
+    <div id="tpl-alunos">
+        <div th:if="${#lists.isEmpty(listaAlunos)}" class="text-muted text-center py-4">
+            Nenhum aluno cadastrado.
+        </div>
+        <div th:each="a : ${listaAlunos}" class="drawer-item">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <strong class="text-dark d-block">🎓 <span th:text="${a.nome}">Nome do Aluno</span></strong>
+                    <small class="text-muted">Matrícula: <span th:text="${a.matricula}">0000</span></small>
+                </div>
+                <span class="badge bg-light text-dark border" th:text="${a.turma != null ? a.turma.nome : ''}">Turma</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. LISTA DE RESPOSTAS ENVIADAS (JÁ RESPONDERAM) -->
+    <div id="tpl-respondidos">
+        <div th:if="${#lists.isEmpty(listaRespostas)}" class="text-muted text-center py-4">
+            Nenhuma resposta enviada ainda.
+        </div>
+        <div th:each="resp : ${listaRespostas}" class="drawer-item">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <strong class="text-dark" th:text="${resp.aluno.nome}">Aluno</strong>
+                <span th:if="${resp.nota != null}" class="badge bg-success">Nota: <span th:text="${resp.nota}"></span></span>
+                <span th:if="${resp.nota == null}" class="badge bg-primary">Aguardando nota</span>
+            </div>
+            <div class="small text-muted mb-2 text-truncate" th:text="${resp.conteudo}">Conteúdo da resposta</div>
+            <a th:href="@{/professor/avaliacoes/{id}(id=${resp.id})}" class="btn btn-sm btn-outline-success fw-bold w-100">
+                ⭐ Abrir / Avaliar Passo
+            </a>
+        </div>
+    </div>
+
+    <!-- 5. LISTA DE PENDENTES (ALUNOS SEM RESPOSTA OU PASSOS ABERTOS) -->
+    <div id="tpl-pendentes">
+        <p class="small text-muted mb-3">Estudantes vinculados às turmas com etapas pendentes de envio:</p>
+        <div th:each="a : ${listaAlunos}" class="drawer-item">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <strong class="text-dark d-block" th:text="${a.nome}">Aluno</strong>
+                    <small class="text-muted" th:text="${a.turma != null ? a.turma.nome : 'Química'}">Turma</small>
+                </div>
+                <span class="badge bg-danger-subtle text-danger border border-danger-subtle">⏳ Pendente</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const offcanvasEl = document.getElementById('painelLevantamento');
+    const bsOffcanvas = new bootstrap.Offcanvas(offcanvasEl);
+
+    const configuracoesPaineis = {
+        roteiros: {
+            titulo: '📘 Roteiros Cadastrados',
+            subtitulo: 'Clique em um roteiro para abrir a matriz de respostas',
+            templateId: 'tpl-roteiros'
+        },
+        turmas: {
+            titulo: '🏫 Turmas Ativas',
+            subtitulo: 'Turmas vinculadas ao laboratório',
+            templateId: 'tpl-turmas'
+        },
+        alunos: {
+            titulo: '👨‍🎓 Alunos Cadastrados',
+            subtitulo: 'Estudantes matriculados nas turmas',
+            templateId: 'tpl-alunos'
+        },
+        respondidos: {
+            titulo: '✅ Atividades Respondidas',
+            subtitulo: 'Envios recentes prontos para mediação e nota',
+            templateId: 'tpl-respondidos'
+        },
+        pendentes: {
+            titulo: '⏳ Etapas Pendentes',
+            subtitulo: 'Acompanhamento de estudantes em andamento',
+            templateId: 'tpl-pendentes'
+        }
+    };
+
+    function abrirPainelLateral(tipo, cardElement) {
+        // Destaca o card clicado
+        document.querySelectorAll('.metric-card').forEach(c => c.classList.remove('active-card'));
+        if (cardElement) {
+            cardElement.classList.add('active-card');
+        }
+
+        const config = configuracoesPaineis[tipo];
+        if (!config) return;
+
+        document.getElementById('tituloPainelLateral').innerText = config.titulo;
+        document.getElementById('subtituloPainelLateral').innerText = config.subtitulo;
+        document.getElementById('conteudoPainelLateral').innerHTML = document.getElementById(config.templateId).innerHTML;
+
+        bsOffcanvas.show();
+    }
+
+    // Gráfico Chart.js com clique nas fatias
+    const ctx = document.getElementById('graficoEngajamento');
     new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -739,22 +841,62 @@
         options: {
             responsive: true,
             cutout: '68%',
+            onClick: (event, elements) => {
+                if (elements.length > 0) {
+                    const index = elements[0].index;
+                    if (index === 0) {
+                        abrirPainelLateral('respondidos');
+                    } else if (index === 1) {
+                        abrirPainelLateral('pendentes');
+                    }
+                }
+            },
             plugins: {
                 legend: {
                     position: 'bottom',
                     labels: {
                         usePointStyle: true,
                         padding: 18,
-                        font: {
-                            weight: 'bold'
-                        }
+                        font: { weight: 'bold' }
                     }
                 }
             }
         }
     });
+
+
+
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<footer class="text-light py-4 mt-auto" style="background-color: #2c2c2c;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3 mb-md-0">
+                <h6 class="text-uppercase fw-bold text-white-50">Plataforma</h6>
+                <p class="mb-0 fw-semibold text-white">LabGuide</p>
+                <small class="text-white-50">Ferramenta de Apoio à Experimentação Investigativa em Química</small>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+                <h6 class="text-uppercase fw-bold text-white-50">Links Úteis</h6>
+                <ul class="list-unstyled mb-0">
+                    <li><a href="http://suap.ifg.edu.br" target="_blank" class="text-white-50 text-decoration-none small">SUAP Portal</a></li>
+                    <li><a href="https://moodle.ifg.edu.br" target="_blank" class="text-white-50 text-decoration-none small">Moodle IFG</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h6 class="text-uppercase fw-bold text-white-50">Contato</h6>
+                <p class="mb-0 fw-semibold small text-white">Instituto Federal de Goiás - Campus Luziânia</p>
+                <small class="text-white-50">Rua São Bartolomeu, s/n - Vila Roriz<br>Luziânia - GO | CEP: 72800-000</small>
+            </div>
+        </div>
+        <hr class="border-secondary my-3">
+        <div class="text-center small text-white-50">
+            &copy; 2026 LabGuide - Instituto Federal de Goiás (IFG)
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>
-```

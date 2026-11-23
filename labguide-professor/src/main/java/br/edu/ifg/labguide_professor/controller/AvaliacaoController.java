@@ -18,13 +18,14 @@ public class AvaliacaoController {
     @GetMapping("/{respostaId}")
     public String exibirTelaAvaliacao(@PathVariable Long respostaId, Model model) {
         Resposta resposta = respostaRepository.findById(respostaId)
-                .orElseThrow(() -> new IllegalArgumentException("Resposta inválida:" + respostaId));
+                .orElseThrow(() -> new IllegalArgumentException("Resposta inválida: " + respostaId));
 
         model.addAttribute("resposta", resposta);
-        return "avaliar-resposta"; // Procura o arquivo avaliar-resposta.html
+        return "avaliar-resposta";
     }
 
-    @PostMapping("/professor/avaliacoes/{id}")
+    // Salva a nota e redireciona de volta para a matriz de respostas do roteiro
+    @PostMapping("/{id}")
     public String salvarAvaliacao(@PathVariable Long id,
                                   @RequestParam("nota") Double nota,
                                   @RequestParam(value = "observacaoProfessor", required = false) String observacaoProfessor) {
@@ -36,7 +37,6 @@ public class AvaliacaoController {
         resposta.setObservacaoProfessor(observacaoProfessor);
         respostaRepository.save(resposta);
 
-        // Pega o ID do roteiro vinculado ao passo dessa resposta e volta direto para a planilha!
         Long roteiroId = resposta.getPasso().getRoteiro().getId();
         return "redirect:/roteiros/visualizar/" + roteiroId + "/respostas";
     }

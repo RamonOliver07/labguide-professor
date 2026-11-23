@@ -37,6 +37,20 @@
             border-color: var(--labguide-primary);
             box-shadow: 0 0 0 0.25rem rgba(43, 93, 112, 0.25);
         }
+
+        /* Botões do catálogo de vidrarias */
+        .btn-vidraria {
+            background-color: #ffffff;
+            color: var(--labguide-primary);
+            border: 1px solid rgba(43, 93, 112, 0.25);
+            font-size: 0.78rem;
+            transition: all 0.2s ease;
+        }
+        .btn-vidraria:hover {
+            background-color: var(--labguide-primary);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body>
@@ -54,7 +68,7 @@
                 <li class="nav-item"><a class="nav-link active fw-bold" href="/roteiros">Roteiros</a></li>
             </ul>
             <div class="d-flex align-items-center">
-                <span class="text-white fw-semibold me-3 d-none d-lg-block" th:text="'Olá, ' + ${#authentication.name}">Olá, Professor</span>
+                <span class="text-white fw-semibold me-3 d-none d-lg-block" th:text="'Olá, ' + ${nomeProfessorLogado}">Olá, Professor</span>
                 <form th:action="@{/logout}" method="post" class="m-0">
                     <button type="submit" class="btn btn-outline-light btn-sm fw-bold px-3">Sair</button>
                 </form>
@@ -103,20 +117,47 @@
                                       placeholder="Descreva brevemente o objetivo deste experimento..." required></textarea>
                         </div>
 
-                        <div class="row g-3 mb-4">
-                            <div class="col-md-6">
-                                <label for="problematizacao" class="form-label fw-bold text-danger">❓ Problematização Inicial</label>
-                                <textarea class="form-control bg-light border-0 shadow-sm text-dark border-start border-danger border-4"
-                                          id="problematizacao" th:field="*{problematizacao}" rows="3"
-                                          placeholder="Pergunta que desafia o aluno (Ex: O que acontece se misturarmos X e Y?)" required></textarea>
+                        <!-- PROBLEMATIZAÇÃO INICIAL -->
+                        <div class="mb-4">
+                            <label for="problematizacao" class="form-label fw-bold text-danger">❓ Problematização Inicial</label>
+                            <textarea class="form-control bg-light border-0 shadow-sm text-dark border-start border-danger border-4"
+                                      id="problematizacao" th:field="*{problematizacao}" rows="3"
+                                      placeholder="Pergunta que desafia o aluno (Ex: O que acontece se misturarmos X e Y?)" required></textarea>
+                        </div>
+
+                        <!-- MATERIAIS E REAGENTES COM SELETOR VISUAL DE VIDRARIAS -->
+                        <div class="mb-4">
+                            <label for="materiais" class="form-label fw-bold text-dark">🧫 Materiais, Vidrarias e Reagentes</label>
+
+                            <!-- Painel Interativo de Vidrarias -->
+                            <div class="p-3 mb-2 rounded-3 border-0 shadow-sm" style="background-color: #eef7f9;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="fw-bold text-labguide">
+                                        🧪 Clique em uma vidraria para visualizar o exemplo e adicionar à lista:
+                                    </small>
+                                </div>
+
+                                <!-- Botões gerados pelo JS -->
+                                <div class="d-flex flex-wrap gap-1 mb-2" id="lista-botoes-vidrarias"></div>
+
+                                <!-- Cartão de Exemplo Visual da Vidraria Selecionada -->
+                                <div id="preview-vidraria" class="card border-0 shadow-sm mt-2 d-none">
+                                    <div class="card-body p-2 d-flex align-items-center gap-3">
+                                        <div id="preview-svg-box" class="rounded d-flex align-items-center justify-content-center bg-light border" style="width: 68px; height: 68px; flex-shrink: 0;"></div>
+                                        <div class="flex-grow-1">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <strong id="preview-nome" class="text-labguide small">Nome da Vidraria</strong>
+                                                <span class="badge bg-success-subtle text-success border border-success-subtle" style="font-size: 0.7rem;">✓ Adicionado</span>
+                                            </div>
+                                            <small id="preview-descricao" class="text-muted d-block mt-1" style="font-size: 0.8rem;">Descrição da vidraria.</small>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <label for="materiais" class="form-label fw-bold text-warning text-dark">🧫 Materiais e Reagentes</label>
-                                <textarea class="form-control bg-light border-0 shadow-sm text-dark border-start border-warning border-4"
-                                          id="materiais" th:field="*{materiais}" rows="3"
-                                          placeholder="Liste as vidrarias e compostos (Ex: 1x Béquer 50ml, 5g NaCl...)" required></textarea>
-                            </div>
+                            <textarea class="form-control bg-light border-0 shadow-sm text-dark border-start border-warning border-4"
+                                      id="materiais" th:field="*{materiais}" rows="3"
+                                      placeholder="Liste as vidrarias e compostos (Ex: 1x Béquer (250 mL), 5g NaCl...)" required></textarea>
                         </div>
 
                         <hr class="text-muted mt-5 mb-4">
@@ -164,5 +205,90 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const catalogoVidrarias = [
+        {
+            nome: "Béquer (250 mL)",
+            descricao: "Recipiente cilíndrico com bico usado para misturar, aquecer e preparar soluções em geral.",
+            svg: `<svg viewBox="0 0 64 64" width="46" height="46"><path d="M16 12h32l-3 4h-2v34a4 4 0 0 1-4 4H25a4 4 0 0 1-4-4V16h-2l-3-4z" fill="#dbeff5" stroke="#2B5D70" stroke-width="3"/><line x1="26" y1="24" x2="34" y2="24" stroke="#2B5D70" stroke-width="2"/><line x1="26" y1="32" x2="32" y2="32" stroke="#2B5D70" stroke-width="2"/><line x1="26" y1="40" x2="34" y2="40" stroke="#2B5D70" stroke-width="2"/></svg>`
+        },
+        {
+            nome: "Erlenmeyer (250 mL)",
+            descricao: "Frasco cônico ideal para titulações e agitação de líquidos sem risco de respingos.",
+            svg: `<svg viewBox="0 0 64 64" width="46" height="46"><path d="M26 10h12v10l12 28a4 4 0 0 1-3.7 5.5H17.7A4 4 0 0 1 14 48l12-28V10z" fill="#dbeff5" stroke="#2B5D70" stroke-width="3"/><line x1="24" y1="10" x2="40" y2="10" stroke="#2B5D70" stroke-width="3"/></svg>`
+        },
+        {
+            nome: "Proveta (100 mL)",
+            descricao: "Cilindro graduado utilizado para medir volumes líquidos com boa precisão.",
+            svg: `<svg viewBox="0 0 64 64" width="46" height="46"><rect x="25" y="8" width="14" height="42" rx="2" fill="#dbeff5" stroke="#2B5D70" stroke-width="3"/><path d="M18 54h28" stroke="#2B5D70" stroke-width="4" stroke-linecap="round"/><line x1="29" y1="18" x2="35" y2="18" stroke="#2B5D70" stroke-width="2"/><line x1="29" y1="26" x2="35" y2="26" stroke="#2B5D70" stroke-width="2"/><line x1="29" y1="34" x2="35" y2="34" stroke="#2B5D70" stroke-width="2"/></svg>`
+        },
+        {
+            nome: "Tubo de Ensaio",
+            descricao: "Tubo cilíndrico de fundo arredondado para testes de reações químicas em pequena escala.",
+            svg: `<svg viewBox="0 0 64 64" width="46" height="46"><path d="M26 10h12v36a6 6 0 0 1-12 0V10z" fill="#dbeff5" stroke="#2B5D70" stroke-width="3"/><line x1="23" y1="10" x2="41" y2="10" stroke="#2B5D70" stroke-width="3" stroke-linecap="round"/></svg>`
+        },
+        {
+            nome: "Pipeta Graduada (10 mL)",
+            descricao: "Tubo estreito calibrado para transferir volumes exatos de líquidos com auxílio de pera.",
+            svg: `<svg viewBox="0 0 64 64" width="46" height="46"><path d="M29 8h6v36l-3 12-3-12V8z" fill="#dbeff5" stroke="#2B5D70" stroke-width="2.5"/><line x1="30" y1="18" x2="34" y2="18" stroke="#2B5D70" stroke-width="2"/><line x1="30" y1="26" x2="34" y2="26" stroke="#2B5D70" stroke-width="2"/><line x1="30" y1="34" x2="34" y2="34" stroke="#2B5D70" stroke-width="2"/></svg>`
+        },
+        {
+            nome: "Balão Volumétrico (250 mL)",
+            descricao: "Utilizado no preparo de soluções de concentração rigorosamente conhecida até o menisco.",
+            svg: `<svg viewBox="0 0 64 64" width="46" height="46"><path d="M28 8h8v18a16 16 0 1 1-8 0V8z" fill="#dbeff5" stroke="#2B5D70" stroke-width="3"/><line x1="28" y1="16" x2="36" y2="16" stroke="#dc3545" stroke-width="2"/></svg>`
+        },
+        {
+            nome: "Funil de Vidro",
+            descricao: "Auxilia na transferência de líquidos e em filtrações simples com papel de filtro.",
+            svg: `<svg viewBox="0 0 64 64" width="46" height="46"><path d="M14 14h36L35 34v18l-6-4V34L14 14z" fill="#dbeff5" stroke="#2B5D70" stroke-width="3"/></svg>`
+        },
+        {
+            nome: "Bastão de Vidro",
+            descricao: "Haste maciça utilizada para agitar soluções e auxiliar no escoamento de líquidos.",
+            svg: `<svg viewBox="0 0 64 64" width="46" height="46"><line x1="16" y1="48" x2="48" y2="16" stroke="#2B5D70" stroke-width="5" stroke-linecap="round"/><line x1="16" y1="48" x2="48" y2="16" stroke="#dbeff5" stroke-width="2" stroke-linecap="round"/></svg>`
+        },
+        {
+            nome: "Conta-gotas",
+            descricao: "Utilizado para adicionar reagentes e indicadores ácido-base gota a gota.",
+            svg: `<svg viewBox="0 0 64 64" width="46" height="46"><path d="M27 12a5 5 0 0 1 10 0v8H27v-8z" fill="#2B5D70"/><path d="M29 20h6v24l-3 10-3-10V20z" fill="#dbeff5" stroke="#2B5D70" stroke-width="2.5"/></svg>`
+        }
+    ];
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const containerBotoes = document.getElementById("lista-botoes-vidrarias");
+        const textareaMateriais = document.getElementById("materiais");
+        const previewBox = document.getElementById("preview-vidraria");
+        const previewSvg = document.getElementById("preview-svg-box");
+        const previewNome = document.getElementById("preview-nome");
+        const previewDesc = document.getElementById("preview-descricao");
+
+        catalogoVidrarias.forEach(item => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "btn btn-sm btn-vidraria rounded-pill px-3 fw-semibold shadow-sm";
+            btn.innerHTML = `+ ${item.nome}`;
+
+            btn.addEventListener("click", function () {
+                // Exibe o cartão com imagem vetorial e descrição da vidraria
+                previewSvg.innerHTML = item.svg;
+                previewNome.textContent = item.nome;
+                previewDesc.textContent = item.descricao;
+                previewBox.classList.remove("d-none");
+
+                // Insere no campo materiais sem apagar o texto existente
+                const textoAtual = textareaMateriais.value.trim();
+                const novoItem = `1x ${item.nome}`;
+
+                if (textoAtual === "") {
+                    textareaMateriais.value = novoItem;
+                } else {
+                    textareaMateriais.value = textoAtual + ", " + novoItem;
+                }
+            });
+
+            containerBotoes.appendChild(btn);
+        });
+    });
+</script>
 </body>
 </html>

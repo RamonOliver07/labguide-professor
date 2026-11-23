@@ -4,16 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec27e91a-4925-4867-9861-f7e13d1b488b" name="Changes" comment="feat: Atualizado o README.md támbem alguns botões na tela de roteiros">
-      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/config/JwtFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/AuthController.java" afterDir="false" />
+    <list default="true" id="ec27e91a-4925-4867-9861-f7e13d1b488b" name="Changes" comment="feat: Atualizado o README.md, adicição do JWT para acesso da API támbem alguns botões na tela de roteiros">
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/GlobalControllerAdvice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/service/CloudinaryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/labguide-professor/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/AvaliacaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/AvaliacaoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/MobileApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/MobileApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/RoteiroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/controller/RoteiroController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/dto/RespostaMobileDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/java/br/edu/ifg/labguide_professor/dto/RespostaMobileDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/acompanhar-respostas.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/acompanhar-respostas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/avaliar-resposta.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/avaliar-resposta.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-aluno.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-aluno.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-professor.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-professor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-roteiro.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-roteiro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-turma.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/cadastro-turma.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/editar-roteiro.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/editar-roteiro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-alunos.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-alunos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-professores.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-professores.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-roteiros.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/lista-roteiros.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/visualizar-roteiro.html" beforeDir="false" afterPath="$PROJECT_DIR$/labguide-professor/src/main/resources/templates/visualizar-roteiro.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,61 +71,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.8527522646014318E-10" />
-      <entry key="MS500" value="0.014479455324638651" />
-      <entry key="S2" value="0.8463423942519892" />
-      <entry key="S5" value="2.7090726697683074" />
-      <entry key="S10" value="5.064315004344874" />
-      <entry key="S30" value="11.1848500718774" />
-      <entry key="S60" value="15.21743177219933" />
-      <entry key="M2" value="18.338504169277037" />
-      <entry key="M5" value="21.872585931175994" />
-      <entry key="M10" value="24.36694099231168" />
-      <entry key="M15" value="25.62059187298144" />
-      <entry key="M30" value="28.680541969042242" />
-      <entry key="H1" value="38.287089448422" />
-      <entry key="H2" value="56.98270037925939" />
-      <entry key="H4" value="79.61863500130576" />
-      <entry key="D1" value="117.52735645599766" />
-      <entry key="W1" value="127.25120501652879" />
-    </decayedCancelled>
-    <decayedSelected>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000000107730351" />
-      <entry key="S5" value="1.0006500327381072" />
-      <entry key="S10" value="1.0254957396069841" />
-      <entry key="S30" value="1.2943218728184263" />
-      <entry key="S60" value="1.542515329492523" />
-      <entry key="M2" value="1.737520533542764" />
-      <entry key="M5" value="1.9470725771544086" />
-      <entry key="M10" value="2.19009194049445" />
-      <entry key="M15" value="2.3578243806535637" />
-      <entry key="M30" value="2.7357349657131094" />
-      <entry key="H1" value="3.9687621761944962" />
-      <entry key="H2" value="6.650075673849237" />
-      <entry key="H4" value="9.821141232509722" />
-      <entry key="D1" value="14.645319172940804" />
-      <entry key="W1" value="15.796218428368261" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0" />
+      <entry key="M2" value="1.000000004119447" />
+      <entry key="M5" value="1.0037615068748904" />
+      <entry key="M10" value="1.378218675353592" />
+      <entry key="M15" value="2.7774094876648663" />
+      <entry key="M30" value="9.74121649199778" />
+      <entry key="H1" value="24.130671640245918" />
+      <entry key="H2" value="47.569559881861856" />
+      <entry key="H4" value="76.00004840488906" />
+      <entry key="D1" value="125.5379627585132" />
+      <entry key="W1" value="138.62985042578114" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="2.105694268365372E-237" />
+      <entry key="S10" value="4.7042501885039075E-119" />
+      <entry key="S30" value="4.63334323791459E-40" />
+      <entry key="S60" value="2.9184723324857274E-20" />
+      <entry key="M2" value="2.3899729828277483E-10" />
+      <entry key="M5" value="2.211909523496636E-4" />
+      <entry key="M10" value="0.023342907881077075" />
+      <entry key="M15" value="0.11419309930022502" />
+      <entry key="M30" value="0.6020578512751591" />
+      <entry key="H1" value="1.8618177935913702" />
+      <entry key="H2" value="4.554782444766063" />
+      <entry key="H4" value="8.127977296058667" />
+      <entry key="D1" value="14.190649122063032" />
+      <entry key="W1" value="15.725210812775737" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="3.641893382349557E-10" />
-      <entry key="MS500" value="0.025690170053227185" />
-      <entry key="S2" value="1.170929926236848" />
-      <entry key="S5" value="3.346139375561985" />
-      <entry key="S10" value="5.880160751523114" />
-      <entry key="S30" value="12.3759844568201" />
-      <entry key="S60" value="16.694012891278295" />
-      <entry key="M2" value="20.03699223408161" />
-      <entry key="M5" value="23.800515936179565" />
-      <entry key="M10" value="26.545501890504596" />
-      <entry key="M15" value="27.96989893527815" />
-      <entry key="M30" value="31.41089720371068" />
-      <entry key="H1" value="42.25083876669226" />
-      <entry key="H2" value="63.627650813702076" />
-      <entry key="H4" value="89.43564850365837" />
-      <entry key="D1" value="132.17158832252116" />
-      <entry key="W1" value="143.04725446504455" />
+      <entry key="MS100" value="5.18195563567189E-7" />
+      <entry key="MS500" value="0.05532211028622157" />
+      <entry key="S2" value="0.4849809551708674" />
+      <entry key="S5" value="0.7486690397566131" />
+      <entry key="S10" value="0.8652566323100986" />
+      <entry key="S30" value="0.9529021620001208" />
+      <entry key="S60" value="0.9761670768880298" />
+      <entry key="M2" value="0.9880116828708719" />
+      <entry key="M5" value="0.9991677588048355" />
+      <entry key="M10" value="1.3990257831502102" />
+      <entry key="M15" value="2.889572227363256" />
+      <entry key="M30" value="10.341261643940237" />
+      <entry key="H1" value="25.9897091975851" />
+      <entry key="H2" value="52.120611485033535" />
+      <entry key="H4" value="84.12449733535419" />
+      <entry key="D1" value="139.7275392858632" />
+      <entry key="W1" value="154.35489028872755" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -290,6 +302,10 @@
       <workItem from="1794526846975" duration="20000" />
       <workItem from="1794527552984" duration="731000" />
       <workItem from="1794528936596" duration="634000" />
+      <workItem from="1794587722387" duration="8901000" />
+      <workItem from="1794951108667" duration="2467000" />
+      <workItem from="1795107860442" duration="4433000" />
+      <workItem from="1795472400524" duration="349000" />
     </task>
     <task id="LOCAL-00001" summary="feat: adiciona seletor de tipo de entrada (texto, numero, foto) nos passos do roteiro">
       <option name="closed" value="true" />
@@ -339,7 +355,23 @@
       <option name="project" value="LOCAL" />
       <updated>1780067404676</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat: Atualizado o README.md, adicição do JWT para acesso da API támbem alguns botões na tela de roteiros">
+      <option name="closed" value="true" />
+      <created>1794587898829</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1794587898830</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: Atualizado o README.md, adicição do JWT para acesso da API támbem alguns botões na tela de roteiros">
+      <option name="closed" value="true" />
+      <created>1794587955166</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1794587955167</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,6 +408,7 @@
     <MESSAGE value="feat: atualizado todas as cores das navbar, ajuste de botões, ajuste de rodapé acrecenteando em algumas telas, e ação de enviar arquivo para excel" />
     <MESSAGE value="feat: atualizado todas as cores das navbar, ajuste de botões, ajuste de rodapé acrecentando em algumas telas, e ação de enviar arquivo para excel" />
     <MESSAGE value="feat: Atualizado o README.md támbem alguns botões na tela de roteiros" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Atualizado o README.md támbem alguns botões na tela de roteiros" />
+    <MESSAGE value="feat: Atualizado o README.md, adicição do JWT para acesso da API támbem alguns botões na tela de roteiros" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Atualizado o README.md, adicição do JWT para acesso da API támbem alguns botões na tela de roteiros" />
   </component>
 </project>

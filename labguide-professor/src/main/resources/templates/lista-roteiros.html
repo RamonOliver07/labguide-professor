@@ -64,7 +64,7 @@
             </ul>
             <div class="d-flex align-items-center">
                 <!-- Nome dinâmico do professor -->
-                <span class="text-white fw-semibold me-3 d-none d-lg-block" th:text="'Olá, ' + ${#authentication.name}">Olá, Professor</span>
+                <span class="text-white fw-semibold me-3 d-none d-lg-block" th:text="'Olá, ' + ${nomeProfessorLogado}">Olá, Professor</span>
                 <!-- Botão de Sair Seguro -->
                 <form th:action="@{/logout}" method="post" class="m-0">
                     <button type="submit" class="btn btn-outline-light btn-sm fw-bold px-3">Sair</button>

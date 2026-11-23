@@ -54,7 +54,7 @@
                 <li class="nav-item"><a class="nav-link active fw-bold" href="/roteiros">Roteiros</a></li>
             </ul>
             <div class="d-flex align-items-center">
-                <span class="text-white fw-semibold me-3 d-none d-lg-block" th:text="'Olá, ' + ${#authentication.name}">Olá, Professor</span>
+                <span class="text-white fw-semibold me-3 d-none d-lg-block" th:text="'Olá, ' + ${nomeProfessorLogado}">Olá, Professor</span>
                 <form th:action="@{/logout}" method="post" class="m-0">
                     <button type="submit" class="btn btn-outline-light btn-sm fw-bold px-3">Sair</button>
                 </form>
